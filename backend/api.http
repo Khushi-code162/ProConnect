@@ -22,4 +22,12 @@ Content-Type: application/json
     "password":"mySecurePassword"
 }
 
+###
+GET http://localhost:9090/get_user_and_profile
+Content-Type: application/json
+
+{
+  "token": "84f2b6a446bd5a9a130d7520d4c1aef28c8043cc588605bd4823e31d65f617c3"
+}
+
 
