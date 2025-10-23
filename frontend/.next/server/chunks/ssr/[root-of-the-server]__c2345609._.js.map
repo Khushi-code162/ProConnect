@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/page.module.css [app-rsc] (css module)"],"sourcesContent":["__turbopack_context__.v({\n});\n"],"names":[],"mappings":"AAAA;AACA"}},
+    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/page.js"],"sourcesContent":["import Image from \"next/image\";\nimport styles from \"./page.module.css\";\n\nexport default function Home() {\n  return(\n\n    <h1>hello</h1>\n  )\n}\n"],"names":[],"mappings":";;;;;AAAA;AACA;;;;AAEe,SAAS;IACtB,qBAEE,8OAAC;kBAAG;;;;;;AAER","debugId":null}}]
+}
