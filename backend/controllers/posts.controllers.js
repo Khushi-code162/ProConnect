@@ -70,3 +70,37 @@ export const deletePost = async(req,res) =>{
         return res.status(500).json({ message: error.message });
     }
 }
+
+//comment on post feature
+export const commentPost = async(req,res) =>{
+    const { token, post_id, commentBody} = req.body;
+
+    try{
+        const user = await User.findOne({ token: token}).select("_id");
+
+        if(!user){
+            return res.status(404).json({ message: "user not found" })
+        }
+
+        const post = await Post.findOne({
+            _id: post_id
+        });
+        if(!post) {
+            return res.status(404).json({ message: "Post not found" })
+        }
+
+        const comment = new Comment({
+            userID : user._id,
+            postId :post_id,
+            comment: commentBody
+        });
+
+        await comment.save();
+
+        return res.status(200).json({ message: "Commnet added" });
+
+    }catch(error){
+        return res.status(500).json({ mesaage: error.message });
+    }
+}
+
