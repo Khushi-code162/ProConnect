@@ -6,7 +6,7 @@ import crypto from "crypto";
 import fs from "fs";
 import PDFDocument from "pdfkit";
 import multer from "multer";
-import { Connection } from "mongoose";
+import mongoose from "mongoose";
 
 // Convert user profile to PDF
 const convertUserDataTOPDF = async (userData) => {
