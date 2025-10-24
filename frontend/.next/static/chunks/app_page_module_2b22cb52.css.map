@@ -2,5 +2,5 @@
   "version": 3,
   "sources": [],
   "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/page.module.css"],"sourcesContent":[""],"names":[],"mappings":"","debugId":null}}]
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/page.module.css"],"sourcesContent":[".container {\r\n    font-family: \"Poppins\";\r\n    padding: 1.2rem;\r\n}"],"names":[],"mappings":"AAAA","debugId":null}}]
 }

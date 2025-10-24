@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 11, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/login/page.js"],"sourcesContent":["\r\n\r\nexport default function LoginComponent(){\r\n    return(\r\n        <div>LoginComponent</div>\r\n    )\r\n}"],"names":[],"mappings":";;;;;;AAEe,SAAS;IACpB,qBACI,8OAAC;kBAAI;;;;;;AAEb","debugId":null}}]
+}
