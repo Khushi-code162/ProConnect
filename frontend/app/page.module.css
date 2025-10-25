@@ -2,3 +2,49 @@
     font-family: "Poppins";
     padding: 1.2rem;
 }
+
+
+.mainContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:4 rem;
+    padding-inline: 2 rem;
+    height: 80vh;
+
+}
+
+.mainContainer__left {
+    flex : 0.5;
+}
+
+.mainContainer__right {
+    flex: 0.5;
+}
+
+.mainContainer__left > p:nth-child(1){
+    font-size: 2.9rem;
+    background: -webkit-linear-gradient(45deg, #000000, #9d9d9d);
+    background-clip:text ;
+    font-weight: bold;
+    -webkit-text-fill-color: transparent;
+}
+
+.mainContainer__left > p:nth-child(2) {
+    font-size: 1.7rem;
+    color :#4D4D4D;
+}
+
+.mainContainer__left > div.buttonJoin{
+    width: fit-content;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s;
+    margin-top: 0.8rem;
+    font-size: 1.4rem;
+    background-color: rgb(177, 40, 120);
+    color :white;
+    padding-inline: 1.2rem;
+    padding-block: 0.6rem;
+    border-radius: 20px;
+}

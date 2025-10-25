@@ -4,4 +4,50 @@
   font-family: Poppins;
 }
 
+.page-module__E0kJGG__mainContainer {
+  justify-content: center;
+  align-items: center;
+  gap: 4 rem;
+  padding-inline: 2 rem;
+  height: 80vh;
+  display: flex;
+}
+
+.page-module__E0kJGG__mainContainer__left, .page-module__E0kJGG__mainContainer__right {
+  flex: .5;
+}
+
+.page-module__E0kJGG__mainContainer__left > p:first-child {
+  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(45deg, #000, #9d9d9d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 2.9rem;
+  font-weight: bold;
+}
+
+.page-module__E0kJGG__mainContainer__left > p:nth-child(2) {
+  color: #4d4d4d;
+  font-size: 1.7rem;
+}
+
+.page-module__E0kJGG__mainContainer__left > div.page-module__E0kJGG__buttonJoin {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  color: #fff;
+  background-color: #b12878;
+  border-radius: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: .8rem;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  font-size: 1.4rem;
+  transition: all .2s;
+}
+
 /*# sourceMappingURL=app_page_module_2b22cb52.css.map*/
