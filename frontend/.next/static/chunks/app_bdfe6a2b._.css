@@ -1,0 +1,112 @@
+/* [project]/app/Components/Navbar/Navbar.module.css [app-client] (css) */
+.Navbar-module__lmnXZq__container {
+  padding: 1.2rem;
+}
+
+.Navbar-module__lmnXZq__navBar {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.Navbar-module__lmnXZq__navBaroptionContainer {
+  display: flex;
+}
+
+.Navbar-module__lmnXZq__buttonJoin {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  color: #fff;
+  background-color: #b12878;
+  border-radius: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: .8rem;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  font-size: 1.4rem;
+  transition: all .2s;
+}
+
+/* [project]/app/login/login.module.css [app-client] (css) */
+.login-module__Si-P0q__container {
+  background: snow;
+  justify-content: center;
+  align-items: center;
+  height: 90svh;
+  display: flex;
+}
+
+.login-module__Si-P0q__cardContainer {
+  background: #fff;
+  border-radius: 10px;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 10px 10px 15px #adadad;
+}
+
+.login-module__Si-P0q__cardContainer__left {
+  text-align: center;
+  flex: .6;
+  padding: 2rem;
+}
+
+.login-module__Si-P0q__cardContainer__right {
+  background: #755dc2;
+  flex: .4;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.login-module__Si-P0q__cardleft__heading {
+  margin-bottom: 1.2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.login-module__Si-P0q__inputField {
+  border: 1px solid silver;
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+  margin: .5rem;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+}
+
+.login-module__Si-P0q__inputContainer {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 1.3rem;
+  display: flex;
+}
+
+.login-module__Si-P0q__inputRow {
+  gap: 1.2rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+}
+
+.login-module__Si-P0q__buttonWithOutline {
+  cursor: pointer;
+  background: silver;
+  border-radius: 10px;
+  width: 100%;
+  padding: .8rem;
+}
+
+/*# sourceMappingURL=app_bdfe6a2b._.css.map*/

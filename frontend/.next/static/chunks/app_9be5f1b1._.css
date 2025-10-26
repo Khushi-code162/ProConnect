@@ -1,4 +1,9 @@
 /* [project]/app/page.module.css [app-client] (css) */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 .page-module__E0kJGG__container {
   padding: 1.2rem;
   font-family: Poppins;

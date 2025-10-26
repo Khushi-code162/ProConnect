@@ -8,7 +8,7 @@ __turbopack_context__.s([
 ]);
 const { default: axios } = __turbopack_context__.r("[project]/node_modules/axios/dist/browser/axios.cjs [app-client] (ecmascript)");
 const clientServer = axios.create({
-    baseURL: "hhtp;//localhost:9090"
+    baseURL: "http://localhost:9090"
 });
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);

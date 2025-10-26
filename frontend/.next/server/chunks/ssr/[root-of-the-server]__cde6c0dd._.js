@@ -80,7 +80,7 @@ __turbopack_context__.s([
 ]);
 const { default: axios } = __turbopack_context__.r("[project]/node_modules/axios/dist/node/axios.cjs [app-ssr] (ecmascript)");
 const clientServer = axios.create({
-    baseURL: "hhtp;//localhost:9090"
+    baseURL: "http://localhost:9090"
 });
 }),
 "[project]/config/redux/action/authAction/index.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
