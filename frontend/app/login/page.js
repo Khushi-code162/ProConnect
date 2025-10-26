@@ -2,7 +2,7 @@
 import UserLayout from "../Layout/UserLayout/UserLayout"
 import { useRouter } from 'next/navigation';
 import React , { useEffect, useState }  from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch } from 'react-redux'
 import Styles from './login.module.css';
 
 
@@ -13,13 +13,25 @@ export default function LoginComponent(){
 
     const router = useRouter();
 
+    const dispatch = useDispatch();
+
     const [userLoginMethod , setUserLoginMethod]= useState(false);
 
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [username, setUserName] = useState("");
+    const [name, setName] = useState("")
     useEffect(() =>{
         if(authState.loggedIn){
             router.push("/dashboard")
         }
     })
+
+
+    const handleRegister =() =>{
+        console.log("registering...");
+    }
     return(
         <UserLayout>
             <div className = {Styles.container}>
@@ -36,7 +48,15 @@ export default function LoginComponent(){
                         <input className={Styles.inputField} type="text" placeholder="Email" />
                         <input className={Styles.inputField} type="text" placeholder="Password" />
 
-                        <div className= {Styles.buttonWithOutline}>
+                        <div
+                        onClick={() =>{
+                            if(userLoginMethod){
+
+                            } else {
+                                handleRegister();
+                            }
+                        }}
+                        className= {Styles.buttonWithOutline}>
                             <p> {userLoginMethod ? "Sign In" : "Sign Up"}</p>
                         </div>
                     </div>
