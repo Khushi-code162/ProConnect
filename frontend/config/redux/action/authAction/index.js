@@ -6,8 +6,8 @@ export const loginUser = createAsyncThunk(
     "user/login",
     async(user , thunkAPI) =>{
         try{
-            const response = await clientServer.post(`/login`,{
-                emil :user.email,
+            const response = await clientServer.post("/login",{
+                email :user.email,
                 password :user.password
             });
 
@@ -27,8 +27,24 @@ export const loginUser = createAsyncThunk(
 )
 
 export const registerUser = createAsyncThunk(
-    "user/register",
-    async(user, thunkAPI) =>{
-        
+  "user/register",
+  async (user, thunkAPI) => {
+    try {
+      const response = await clientServer.post("/register", {
+        username: user.username,
+        password: user.password,
+        email: user.email,
+        name: user.name,
+      });
+
+      // Check if backend returned a message or token etc.
+      return thunkAPI.fulfillWithValue(response.data);
+
+    } catch (error) {
+      // Ensure proper error handling
+      return thunkAPI.rejectWithValue(
+        error.response?.data || { message: "Registration failed" }
+      );
     }
-)
+  }
+);

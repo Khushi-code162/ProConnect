@@ -142,7 +142,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navi
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-redux/dist/react-redux.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$login$2f$login$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__ = __turbopack_context__.i("[project]/app/login/login.module.css [app-ssr] (css module)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/action/authAction/index.js [app-ssr] (ecmascript)");
 'use client';
+;
 ;
 ;
 ;
@@ -162,9 +164,17 @@ function LoginComponent() {
         if (authState.loggedIn) {
             router.push("/dashboard");
         }
-    });
+    }, [
+        authState.loggedIn
+    ]);
     const handleRegister = ()=>{
         console.log("registering...");
+        dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["registerUser"])({
+            username,
+            password,
+            email,
+            name
+        }));
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$UserLayout$2f$UserLayout$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -180,7 +190,17 @@ function LoginComponent() {
                                 children: userLoginMethod ? "Sign In" : "Sign Up"
                             }, void 0, false, {
                                 fileName: "[project]/app/login/page.js",
-                                lineNumber: 40,
+                                lineNumber: 43,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                style: {
+                                    color: authState.isError ? "red" : "green"
+                                },
+                                children: authState.message?.message
+                            }, void 0, false, {
+                                fileName: "[project]/app/login/page.js",
+                                lineNumber: 44,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -190,45 +210,49 @@ function LoginComponent() {
                                         className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$login$2f$login$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].inputRow,
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                onChange: (e)=>setUserName(e.target.value),
                                                 className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$login$2f$login$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].inputField,
                                                 type: "text",
                                                 placeholder: "username"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/login/page.js",
-                                                lineNumber: 44,
+                                                lineNumber: 48,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                onChange: (e)=>setName(e.target.value),
                                                 className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$login$2f$login$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].inputField,
                                                 type: "text",
                                                 placeholder: "Name"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/login/page.js",
-                                                lineNumber: 45,
+                                                lineNumber: 49,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/login/page.js",
-                                        lineNumber: 43,
+                                        lineNumber: 47,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                        onChange: (e)=>setEmail(e.target.value),
                                         className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$login$2f$login$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].inputField,
                                         type: "text",
                                         placeholder: "Email"
                                     }, void 0, false, {
                                         fileName: "[project]/app/login/page.js",
-                                        lineNumber: 48,
+                                        lineNumber: 52,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                        onChange: (e)=>setPassword(e.target.value),
                                         className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$login$2f$login$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].inputField,
                                         type: "text",
                                         placeholder: "Password"
                                     }, void 0, false, {
                                         fileName: "[project]/app/login/page.js",
-                                        lineNumber: 49,
+                                        lineNumber: 53,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -245,47 +269,47 @@ function LoginComponent() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/login/page.js",
-                                            lineNumber: 60,
+                                            lineNumber: 64,
                                             columnNumber: 29
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/login/page.js",
-                                        lineNumber: 51,
+                                        lineNumber: 55,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/login/page.js",
-                                lineNumber: 42,
+                                lineNumber: 46,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/login/page.js",
-                        lineNumber: 39,
+                        lineNumber: 42,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$login$2f$login$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].cardContainer__right
                     }, void 0, false, {
                         fileName: "[project]/app/login/page.js",
-                        lineNumber: 65,
+                        lineNumber: 69,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/login/page.js",
-                lineNumber: 38,
+                lineNumber: 41,
                 columnNumber: 13
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/login/page.js",
-            lineNumber: 37,
+            lineNumber: 40,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/login/page.js",
-        lineNumber: 36,
+        lineNumber: 39,
         columnNumber: 9
     }, this);
 }

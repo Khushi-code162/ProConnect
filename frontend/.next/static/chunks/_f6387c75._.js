@@ -30,7 +30,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f
 const loginUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/login", async (user, thunkAPI)=>{
     try {
         const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clientServer"].post("/login", {
-            emil: user.email,
+            email: user.email,
             password: user.password
         });
         if (response.data.token) {
@@ -45,7 +45,24 @@ const loginUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         return thunkAPI.rejectWithValue(error.response.data);
     }
 });
-const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/register", async (user, thunkAPI)=>{});
+const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/register", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clientServer"].post("/register", {
+            username: user.username,
+            password: user.password,
+            email: user.email,
+            name: user.name
+        });
+        // Check if backend returned a message or token etc.
+        return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+        var _error_response;
+        // Ensure proper error handling
+        return thunkAPI.rejectWithValue(((_error_response = error.response) === null || _error_response === void 0 ? void 0 : _error_response.data) || {
+            message: "Registration failed"
+        });
+    }
+});
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -108,8 +125,10 @@ const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
             state.isLoading = false;
             state.isError = false;
             state.isSuccess = true;
-            state.loggedIn = true;
-            state.message = "Registration successful";
+            state.loggedIn = false;
+            state.message = {
+                message: "Registration successful, Please login"
+            };
         }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["registerUser"].rejected, (state, action)=>{
             state.isLoading = false;
             state.isError = true;
