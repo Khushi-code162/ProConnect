@@ -138,8 +138,8 @@ const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
 __turbopack_context__.s([
     "default",
     ()=>__TURBOPACK__default__export__,
-    "handleLoginUser",
-    ()=>handleLoginUser,
+    "emptyMessage",
+    ()=>emptyMessage,
     "reset",
     ()=>reset
 ]);
@@ -165,6 +165,9 @@ const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         reset: ()=>initialState,
         handleLoginUser: (state)=>{
             state.message = "hello";
+        },
+        emptyMessage: (state)=>{
+            state.message = "";
         }
     },
     extraReducers: (builder)=>{
@@ -201,7 +204,7 @@ const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         });
     }
 });
-const { reset, handleLoginUser } = authSlice.actions;
+const { reset, emptyMessage } = authSlice.actions;
 const __TURBOPACK__default__export__ = authSlice.reducer;
 }),
 "[project]/config/redux/reducer/store.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {

@@ -27,6 +27,7 @@
     .cardContainer__right {
         flex: 0.4;
         background : #755dc2;
+        color: white;
         display : flex;
         justify-content: center;
         align-items: center;
