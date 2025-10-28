@@ -87,6 +87,8 @@ const clientServer = axios.create({
 "use strict";
 
 __turbopack_context__.s([
+    "getAboutUser",
+    ()=>getAboutUser,
     "loginUser",
     ()=>loginUser,
     "registerUser",
@@ -129,6 +131,18 @@ const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
         return thunkAPI.rejectWithValue(error.response?.data || {
             message: "Registration failed"
         });
+    }
+});
+const getAboutUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getAboutUser", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].get('/get_user_and_profile', {
+            params: {
+                token: user.token
+            }
+        });
+        return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data);
     }
 });
 }),
@@ -207,6 +221,80 @@ const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
 const { reset, emptyMessage } = authSlice.actions;
 const __TURBOPACK__default__export__ = authSlice.reducer;
 }),
+"[project]/config/redux/action/postAction/index.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "getAllPosts",
+    ()=>getAllPosts
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/index.jsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs [app-ssr] (ecmascript) <locals>");
+;
+;
+const getAllPosts = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("post/getAllPosts", async (_, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].get('/posts');
+        return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data);
+    }
+});
+}),
+"[project]/config/redux/reducer/postReducer/index.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__,
+    "reset",
+    ()=>reset,
+    "resetPostId",
+    ()=>resetPostId
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/action/postAction/index.js [app-ssr] (ecmascript)");
+;
+;
+const initialState = {
+    posts: [],
+    isError: false,
+    postFetched: false,
+    isLoading: false,
+    loggedIn: false,
+    message: "",
+    comments: [],
+    postId: ""
+};
+const postSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createSlice"])({
+    name: "post",
+    initialState,
+    reducers: {
+        reset: ()=>initialState,
+        resetPostId: (state)=>{
+            state.postId = "";
+        }
+    },
+    extraReducers: (builder)=>{
+        builder.addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAllPosts"].pending, (state)=>{
+            state.isLoading = true;
+            state.message = "Fetching all posts...";
+        }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAllPosts"].fulfilled, (state, action)=>{
+            state.isLoading = false;
+            state.isError = false;
+            state.postFetched = true;
+            state.posts = action.payload.posts;
+            state.message = "Posts fetched successfully!";
+        }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAllPosts"].rejected, (state, action)=>{
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.error?.message || "Failed to fetch posts.";
+        });
+    }
+});
+const { reset, resetPostId } = postSlice.actions;
+const __TURBOPACK__default__export__ = postSlice.reducer;
+}),
 "[project]/config/redux/reducer/store.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -216,12 +304,14 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs [app-ssr] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$authReducer$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/reducer/authReducer/index.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$postReducer$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/reducer/postReducer/index.js [app-ssr] (ecmascript)");
+;
 ;
 ;
 const store = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["configureStore"])({
     reducer: {
         auth: __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$authReducer$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"],
-        posts: postReducer
+        posts: __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$postReducer$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]
     }
 });
 }),
@@ -296,4 +386,4 @@ module.exports = mod;
 }),
 ];
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__cde6c0dd._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__5e572790._.js.map
