@@ -3,5 +3,5 @@
   "sources": [],
   "sections": [
     {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 11, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/dashboard/page.js"],"sourcesContent":["import React from 'react';\r\n\r\nfunction Dashboard() {\r\n  return (\r\n    <h1>dashboard</h1>\r\n  );\r\n}\r\n\r\nexport default Dashboard;\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAEA,SAAS;IACP,qBACE,8OAAC;kBAAG;;;;;;AAER;uCAEe","debugId":null}}]
+    {"offset": {"line": 11, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/dashboard/page.js"],"sourcesContent":["import React, { useEffect } from 'react';\r\nimport { useRouter } from 'next/navigation';\r\n\r\nfunction Dashboard() {\r\n\r\n  const router = useRouter();\r\n\r\n  useEffect(() =>{\r\n    if(localStorage.getItem('token') === null)\r\n      router.push(\"/login\")\r\n  })\r\n\r\n  return (\r\n    <h1>dashboard</h1>\r\n  );\r\n}\r\n\r\nexport default Dashboard;\r\n"],"names":[],"mappings":";;;;;AAAA;AACA;AAAA;;;;AAEA,SAAS;IAEP,MAAM,SAAS,IAAA,kMAAS;IAExB,IAAA,kNAAS,EAAC;QACR,IAAG,aAAa,OAAO,CAAC,aAAa,MACnC,OAAO,IAAI,CAAC;IAChB;IAEA,qBACE,8OAAC;kBAAG;;;;;;AAER;uCAEe","debugId":null}}]
 }

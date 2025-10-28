@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/dashboard/page.js"],"sourcesContent":["'use client'\r\nimport React, { useEffect } from 'react';\r\nimport { useRouter } from 'next/navigation';\r\n\r\nfunction Dashboard() {\r\n\r\n  const router = useRouter();\r\n\r\n  useEffect(() =>{\r\n    if(localStorage.getItem('token') === null)\r\n      router.push(\"/login\")\r\n  })\r\n\r\n  return (\r\n    <h1>dashboard</h1>\r\n  );\r\n}\r\n\r\nexport default Dashboard;\r\n"],"names":[],"mappings":";;;;;AACA;AACA;;;AAFA;;;AAIA,SAAS;;IAEP,MAAM,SAAS,IAAA,kJAAS;IAExB,IAAA,0KAAS;+BAAC;YACR,IAAG,aAAa,OAAO,CAAC,aAAa,MACnC,OAAO,IAAI,CAAC;QAChB;;IAEA,qBACE,6LAAC;kBAAG;;;;;;AAER;GAZS;;QAEQ,kJAAS;;;KAFjB;uCAcM","debugId":null}},
+    {"offset": {"line": 47, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/node_modules/next/navigation.js"],"sourcesContent":["module.exports = require('./dist/client/components/navigation')\n"],"names":[],"mappings":"AAAA,OAAO,OAAO","ignoreList":[0],"debugId":null}}]
+}
