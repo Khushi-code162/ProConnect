@@ -1,6 +1,7 @@
 /* [project]/app/Components/Navbar/Navbar.module.css [app-client] (css) */
 .Navbar-module__lmnXZq__container {
   padding: 1.2rem;
+  top: 0;
 }
 
 .Navbar-module__lmnXZq__navBar {
@@ -10,6 +11,12 @@
 }
 
 .Navbar-module__lmnXZq__navBaroptionContainer {
+  display: flex;
+}
+
+.Navbar-module__lmnXZq__navBar p {
+  align-items: center;
+  margin: 0;
   display: flex;
 }
 

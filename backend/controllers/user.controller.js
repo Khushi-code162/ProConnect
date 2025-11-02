@@ -180,7 +180,7 @@ export const getUserAndProfile = async (req, res) => {
       "name email username profilePicture"
     );
 
-    return res.json(profile);
+    return res.json({profile});
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

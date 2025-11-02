@@ -1,14 +1,17 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '@/config/redux/action/postAction';
 import { getAboutUser } from '@/config/redux/action/authAction';
+import UserLayout from '../Layout/UserLayout/UserLayout';
 
 function Dashboard() {
 
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const authState = useSelector((state) => state.auth)
 
   const [isTokenThere, setIsTokenThere] = useState(false)
 
@@ -24,10 +27,20 @@ function Dashboard() {
       dispatch(getAllPosts())
       dispatch(getAboutUser({ token: localStorage.getItem('token')}))
     }
-  }, [isTokenThere])
+  }, [isTokenThere]);
+
+  useEffect(() => {
+  console.log('authState:', authState);
+}, [authState]);
+
 
   return (
-    <h1>dashboard</h1>
+    <UserLayout>
+    
+      {authState.profileFetched && <div>
+        Hey {authState.user?.userId?.name}
+        </div>}
+    </UserLayout>
   );
 }
 
