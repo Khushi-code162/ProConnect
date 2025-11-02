@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '@/config/redux/action/postAction';
 import { getAboutUser } from '@/config/redux/action/authAction';
 import UserLayout from '../Layout/UserLayout/UserLayout';
+import DashboardLayout from '../Layout/DashboardLayout/page';
 
 function Dashboard() {
 
@@ -36,10 +37,9 @@ function Dashboard() {
 
   return (
     <UserLayout>
-    
-      {authState.profileFetched && <div>
-        Hey {authState.user?.userId?.name}
-        </div>}
+    <DashboardLayout>
+      <h1>Dashboard</h1>
+    </DashboardLayout>
     </UserLayout>
   );
 }
