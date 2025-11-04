@@ -24,11 +24,11 @@ function Dashboard() {
   })
 
   useEffect(() => {
-    if (isTokenThere){
+    if (authState.IsTokenThere){
       dispatch(getAllPosts())
       dispatch(getAboutUser({ token: localStorage.getItem('token')}))
     }
-  }, [isTokenThere]);
+  }, [authState.isTokenThere]);
 
   useEffect(() => {
   console.log('authState:', authState);

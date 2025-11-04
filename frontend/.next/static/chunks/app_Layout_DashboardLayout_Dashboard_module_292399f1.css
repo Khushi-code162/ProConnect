@@ -1,0 +1,42 @@
+/* [project]/app/Layout/DashboardLayout/Dashboard.module.css [app-client] (css) */
+.Dashboard-module__6WC9ya__homeContainer {
+  display: flex;
+}
+
+.Dashboard-module__6WC9ya__homeContainer > div:nth-child(odd) {
+  flex: .2;
+}
+
+.Dashboard-module__6WC9ya__homeContainer > div:nth-child(2n) {
+  flex: .6;
+}
+
+.Dashboard-module__6WC9ya__homeContainer__leftBar {
+  flex-direction: column;
+  align-items: flex-start;
+  display: flex;
+}
+
+.Dashboard-module__6WC9ya__sideBarOptions {
+  cursor: pointer;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 80%;
+  max-width: 100%;
+  margin: 0;
+  padding-left: .2rem;
+  font-size: 1.2rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.Dashboard-module__6WC9ya__sideBarOptions:hover {
+  transform: scale(1.01);
+}
+
+.Dashboard-module__6WC9ya__sideBarOptions > svg {
+  min-width: 1.2em;
+  max-width: 1.2em;
+}
+
+/*# sourceMappingURL=app_Layout_DashboardLayout_Dashboard_module_292399f1.css.map*/

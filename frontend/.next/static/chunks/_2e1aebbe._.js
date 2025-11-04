@@ -90,7 +90,11 @@ __turbopack_context__.s([
     "emptyMessage",
     ()=>emptyMessage,
     "reset",
-    ()=>reset
+    ()=>reset,
+    "setTokenIsNotThere",
+    ()=>setTokenIsNotThere,
+    "setTokenIsThere",
+    ()=>setTokenIsThere
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs [app-client] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/action/authAction/index.js [app-client] (ecmascript)");
@@ -103,6 +107,7 @@ const initialState = {
     isLoading: false,
     loggedIn: false,
     message: "",
+    isTokenThere: false,
     profileFetched: false,
     connections: [],
     connectionRequest: []
@@ -117,6 +122,12 @@ const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         },
         emptyMessage: (state)=>{
             state.message = "";
+        },
+        setTokenIsThere: (state)=>{
+            state.isTokenThere = true;
+        },
+        setTokenIsNotThere: (state)=>{
+            state.isTokenThere = false;
         }
     },
     extraReducers: (builder)=>{
@@ -158,7 +169,7 @@ const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         });
     }
 });
-const { reset, emptyMessage } = authSlice.actions;
+const { reset, emptyMessage, setTokenIsThere, setTokenIsNotThere } = authSlice.actions;
 const __TURBOPACK__default__export__ = authSlice.reducer;
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);

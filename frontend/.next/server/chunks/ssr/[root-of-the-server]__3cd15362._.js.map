@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 11, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/Discover/page.js"],"sourcesContent":["import React from 'react'\r\n\r\n\r\nconst DiscoverPage = () => {\r\n  return (\r\n    <UserLayout>\r\n    <DashboardLayout>\r\n      <h1>Discover page</h1>\r\n    </DashboardLayout>\r\n    </UserLayout>\r\n  );\r\n}\r\n\r\nexport default DiscoverPage"],"names":[],"mappings":";;;;;AAAA;;;AAGA,MAAM,eAAe;IACnB,qBACE,8OAAC;kBACD,cAAA,8OAAC;sBACC,cAAA,8OAAC;0BAAG;;;;;;;;;;;;;;;;AAIV;uCAEe","debugId":null}}]
+}
