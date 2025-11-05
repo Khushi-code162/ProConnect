@@ -20,6 +20,8 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 __turbopack_context__.s([
     "getAboutUser",
     ()=>getAboutUser,
+    "getAllUsers",
+    ()=>getAllUsers,
     "loginUser",
     ()=>loginUser,
     "registerUser",
@@ -77,6 +79,14 @@ const getAboutUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
         return thunkAPI.rejectWithValue(error.response.data);
     }
 });
+const getAllUsers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getAllUsers", async (_, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clientServer"].get("/user/get_all_users");
+        return thunkAPI.fulfillWithValue(response.data);
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err.response.data);
+    }
+});
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -110,7 +120,9 @@ const initialState = {
     isTokenThere: false,
     profileFetched: false,
     connections: [],
-    connectionRequest: []
+    connectionRequest: [],
+    all_users: [],
+    all_profiles_fetched: false
 };
 const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createSlice"])({
     name: "auth",
@@ -166,6 +178,10 @@ const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
             state.isError = false;
             state.profileFetched = true;
             state.user = action.payload.profile;
+        }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getAllUsers"].fulfilled, (state, action)=>{
+            state.isLoading = false;
+            state.isError = false;
+            state.all_users = action.payload.profiles;
         });
     }
 });

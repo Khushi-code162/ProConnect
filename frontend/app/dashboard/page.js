@@ -25,8 +25,13 @@ function Dashboard() {
 
   useEffect(() => {
     if (authState.IsTokenThere){
+      console.log("Auth Token")
       dispatch(getAllPosts())
       dispatch(getAboutUser({ token: localStorage.getItem('token')}))
+    }
+
+    if(!authState.all_profiles_fetched) {
+      dispatch(getAllUsers());
     }
   }, [authState.isTokenThere]);
 

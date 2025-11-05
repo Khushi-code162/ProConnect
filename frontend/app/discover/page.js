@@ -1,8 +1,19 @@
 import React from 'react'
 import DashboardLayout from '../Layout/DashboardLayout/page';
 import UserLayout from '../Layout/UserLayout/UserLayout';
+import { useSelector,useDispatch } from 'react-redux';
+import { getAllUsers } from '@/config/redux/action/authAction';
 
-const DiscoverPage = () => {
+function DiscoverPage ()  {
+
+  const authState = useSelector((state) => state.auth)
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if(!authState.all_profile_fetched) {
+        dispatch(getAllUsers());
+    }
+  }, [])
   return (
     <UserLayout>
     <DashboardLayout>
