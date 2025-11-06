@@ -3,12 +3,15 @@
 "use strict";
 
 __turbopack_context__.s([
+    "BASE_URL",
+    ()=>BASE_URL,
     "clientServer",
     ()=>clientServer
 ]);
 const { default: axios } = __turbopack_context__.r("[project]/node_modules/axios/dist/browser/axios.cjs [app-client] (ecmascript)");
+const BASE_URL = "http://localhost:9090";
 const clientServer = axios.create({
-    baseURL: "http://localhost:9090"
+    baseURL: BASE_URL
 });
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
@@ -111,7 +114,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f
 ;
 ;
 const initialState = {
-    user: {},
+    user: undefined,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -181,6 +184,7 @@ const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getAllUsers"].fulfilled, (state, action)=>{
             state.isLoading = false;
             state.isError = false;
+            state.all_profiles_fetched = true;
             state.all_users = action.payload.profiles;
         });
     }
