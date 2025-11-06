@@ -201,6 +201,8 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 __turbopack_context__.s([
     "createPost",
     ()=>createPost,
+    "deletePost",
+    ()=>deletePost,
     "getAllPosts",
     ()=>getAllPosts
 ]);
@@ -235,6 +237,19 @@ const createPost = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modu
         }
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data);
+    }
+});
+const deletePost = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("post/deletePost", async (post_id, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clientServer"].delete("/delete_post", {
+            data: {
+                token: localStorage.getItem("token"),
+                post_id: post_id.post_id
+            }
+        });
+        return thunkAPI.fulfillWithValue(post_id);
+    } catch (error) {
+        return thunkAPI.rejectWithValue("Something went wrong");
     }
 });
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {

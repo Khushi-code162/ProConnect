@@ -59,11 +59,11 @@ export const deletePost = async(req,res) =>{
         if(!post) {
             return res.status(404).json({ messgae : "Post not found"});
         }
-        if(post.userId.toDtring() !== user.idtoString()) {
+        if(post.userId.toString() !== user._id.toString()) {
             return res.status(401).json({ message: "Unauthorized" });
         }
 
-        await Post.deletePost({ _id: post_id });
+        await Post.deleteOne({ _id: post_id });
         return res.json({message: "post Deleted" });
 
     }catch(error){
