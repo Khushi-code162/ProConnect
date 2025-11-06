@@ -392,6 +392,12 @@ const __TURBOPACK__default__export__ = DashboardLayout;
 "[project]/app/dashboard/dashboard.module.css [app-ssr] (css module)", ((__turbopack_context__) => {
 
 __turbopack_context__.v({
+  "Fab": "dashboard-module__Gx_nyq__Fab",
+  "createPostContainer": "dashboard-module__Gx_nyq__createPostContainer",
+  "scrollComponent": "dashboard-module__Gx_nyq__scrollComponent",
+  "textareaofContent": "dashboard-module__Gx_nyq__textareaofContent",
+  "uploadButton": "dashboard-module__Gx_nyq__uploadButton",
+  "userProfile": "dashboard-module__Gx_nyq__userProfile",
 });
 }),
 "[project]/app/dashboard/page.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
@@ -452,87 +458,120 @@ function Dashboard() {
     }, [
         authState.isTokenThere
     ]);
+    const [postContent, setPostContent] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [fileContent, setFileContent] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])();
+    //post handling
+    const handleUpload = async ()=>{
+        await dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createPost"])({
+            file: fileContent,
+            body: postContent
+        }));
+        setPostContent("");
+        setFileContent(null);
+    };
     if (authState.user) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$UserLayout$2f$UserLayout$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$DashboardLayout$2f$page$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$dashboard$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].createPostContainer,
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                            width: 200,
-                            src: authState?.user?.userId?.profilePicture ? authState.user.userId.profilePicture.startsWith('/') ? authState.user.userId.profilePicture : `${__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["BASE_URL"]}/${authState.user.userId.profilePicture}` : '/images/profile.jpg',
-                            alt: "User profile"
-                        }, void 0, false, {
-                            fileName: "[project]/app/dashboard/page.js",
-                            lineNumber: 51,
-                            columnNumber: 3
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
-                            name: "",
-                            id: ""
-                        }, void 0, false, {
-                            fileName: "[project]/app/dashboard/page.js",
-                            lineNumber: 62,
-                            columnNumber: 3
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                            htmlFor: "fileUpload",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "Fab",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    fill: "none",
-                                    viewBox: "0 0 24 24",
-                                    strokeWidth: 1.5,
-                                    stroke: "currentColor",
-                                    className: "size-6",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                        strokeLinecap: "round",
-                                        strokeLinejoin: "round",
-                                        d: "M12 4.5v15m7.5-7.5h-15"
+                    className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$dashboard$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].scrollComponent,
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$dashboard$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].createPostContainer,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$dashboard$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].userProfile,
+                                width: 200,
+                                src: authState?.user?.userId?.profilePicture ? authState.user.userId.profilePicture.startsWith('/') ? authState.user.userId.profilePicture : `${__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["BASE_URL"]}/${authState.user.userId.profilePicture}` : '/images/profile.jpg',
+                                alt: "User profile"
+                            }, void 0, false, {
+                                fileName: "[project]/app/dashboard/page.js",
+                                lineNumber: 63,
+                                columnNumber: 3
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                onChange: (e)=>setPostContent(e.target.value),
+                                value: postContent,
+                                placeholder: "what's in your mind?",
+                                className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$dashboard$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].textareaofContent,
+                                name: "",
+                                id: ""
+                            }, void 0, false, {
+                                fileName: "[project]/app/dashboard/page.js",
+                                lineNumber: 74,
+                                columnNumber: 3
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                htmlFor: "fileUpload",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$dashboard$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].Fab,
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        fill: "none",
+                                        viewBox: "0 0 24 24",
+                                        strokeWidth: 1.5,
+                                        stroke: "currentColor",
+                                        className: "size-6",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                            strokeLinecap: "round",
+                                            strokeLinejoin: "round",
+                                            d: "M12 4.5v15m7.5-7.5h-15"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.js",
+                                            lineNumber: 77,
+                                            columnNumber: 3
+                                        }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.js",
-                                        lineNumber: 65,
-                                        columnNumber: 3
+                                        lineNumber: 76,
+                                        columnNumber: 30
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.js",
-                                    lineNumber: 64,
-                                    columnNumber: 24
+                                    lineNumber: 76,
+                                    columnNumber: 3
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.js",
-                                lineNumber: 64,
+                                lineNumber: 75,
+                                columnNumber: 3
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                onChange: (e)=>setFileContent(e.target.files[0]),
+                                type: "file",
+                                hidden: true,
+                                id: "fileUpload"
+                            }, void 0, false, {
+                                fileName: "[project]/app/dashboard/page.js",
+                                lineNumber: 83,
+                                columnNumber: 3
+                            }, this),
+                            postContent.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                onClick: handleUpload,
+                                className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$dashboard$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].uploadButton,
+                                children: "Post"
+                            }, void 0, false, {
+                                fileName: "[project]/app/dashboard/page.js",
+                                lineNumber: 85,
                                 columnNumber: 3
                             }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/app/dashboard/page.js",
-                            lineNumber: 63,
-                            columnNumber: 3
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                            type: "file",
-                            hidden: true,
-                            id: "fileUpload"
-                        }, void 0, false, {
-                            fileName: "[project]/app/dashboard/page.js",
-                            lineNumber: 71,
-                            columnNumber: 3
-                        }, this)
-                    ]
-                }, void 0, true, {
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/dashboard/page.js",
+                        lineNumber: 62,
+                        columnNumber: 6
+                    }, this)
+                }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.js",
-                    lineNumber: 50,
-                    columnNumber: 6
+                    lineNumber: 61,
+                    columnNumber: 7
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.js",
-                lineNumber: 49,
+                lineNumber: 60,
                 columnNumber: 5
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/dashboard/page.js",
-            lineNumber: 48,
+            lineNumber: 59,
             columnNumber: 5
         }, this);
     } else {
@@ -542,17 +581,17 @@ function Dashboard() {
                     children: "Loading..."
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.js",
-                    lineNumber: 82,
+                    lineNumber: 99,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.js",
-                lineNumber: 81,
+                lineNumber: 98,
                 columnNumber: 7
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/dashboard/page.js",
-            lineNumber: 80,
+            lineNumber: 97,
             columnNumber: 5
         }, this);
     }

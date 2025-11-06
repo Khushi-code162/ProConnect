@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts } from '@/config/redux/action/postAction';
+import { createPost, getAllPosts } from '@/config/redux/action/postAction';
 import { getAboutUser,getAllUsers } from '@/config/redux/action/authAction';
 import UserLayout from '../Layout/UserLayout/UserLayout';
 import DashboardLayout from '../Layout/DashboardLayout/page';
@@ -41,14 +41,26 @@ function Dashboard() {
   console.log('authState:', authState);
 }, [authState.isTokenThere]);
 
+const [postContent, setPostContent] = useState("");
+const [fileContent, setFileContent] = useState();
+
+//post handling
+const handleUpload = async () =>{
+  await dispatch(createPost({file: fileContent, body: postContent}));
+  setPostContent("");
+  setFileContent(null)
+
+}
+
 if (authState.user){
 
 
   return (
     <UserLayout>
     <DashboardLayout>
+      <div className={Style.scrollComponent}>
      <div className={Style.createPostContainer}>
-  <img
+  <img className={Style.userProfile}
     width={200}
     src={
       authState?.user?.userId?.profilePicture
@@ -59,20 +71,25 @@ if (authState.user){
     }
     alt="User profile"
   />
-  <textarea name="" id=""></textarea>
+  <textarea onChange={(e) => setPostContent(e.target.value)} value={postContent} placeholder={"what's in your mind?"} className={Style.textareaofContent } name="" id=""></textarea>
   <label htmlFor='fileUpload'>
-  <div className='Fab'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+  <div className={Style.Fab}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 </svg>
 
 
   </div>
   </label>
-  <input type="file" hidden id = 'fileUpload' />
+  <input onChange={(e) => setFileContent(e.target.files[0])} type="file" hidden id = 'fileUpload' />
+  {postContent.length >0 && 
+  <div onClick={handleUpload}className={Style.uploadButton}>Post</div>
+}
+</div>
 </div>
 
     </DashboardLayout>
     </UserLayout>
+    
 
   );
 }else{

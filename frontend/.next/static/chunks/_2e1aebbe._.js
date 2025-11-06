@@ -199,6 +199,8 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "use strict";
 
 __turbopack_context__.s([
+    "createPost",
+    ()=>createPost,
     "getAllPosts",
     ()=>getAllPosts
 ]);
@@ -210,6 +212,27 @@ const getAllPosts = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mod
     try {
         const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clientServer"].get('/posts');
         return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data);
+    }
+});
+const createPost = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("post/createPost", async (param, thunkAPI)=>{
+    let { file, body } = param;
+    try {
+        const formData = new FormData();
+        formData.append('token', localStorage.getItem('token'));
+        formData.append('body', body);
+        formData.append('media', file);
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clientServer"].post("/post", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        if (response.status === 200) {
+            return thunkAPI.fulfillWithValue("Post Uploaded");
+        } else {
+            return thunkAPI.rejectWithValue("Post not uploaded");
+        }
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data);
     }

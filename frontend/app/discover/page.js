@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, {useEffect} from 'react'
 import DashboardLayout from '../Layout/DashboardLayout/page';
 import UserLayout from '../Layout/UserLayout/UserLayout';
 import { useSelector,useDispatch } from 'react-redux';
