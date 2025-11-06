@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(postRoutes);
 app.use(userRoutes);
-app.use(express.static("uploads"))
+app.use('/uploads',express.static("uploads"));
 
 const start = async () => {
   try {

@@ -35,7 +35,7 @@ export const createPost = async(req,res) =>{
 //get all posts
 export const getAllPosts = async(req,res) =>{
     try{
-        const posts = await Post.find().populate('userId' , 'name usernaem email profilePicture')
+        const posts = await Post.find().populate('userId' , 'name username email profilePicture')
         return res.json({ posts })
 
     }catch(error){

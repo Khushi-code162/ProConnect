@@ -341,7 +341,9 @@ const postSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
             state.isLoading = false;
             state.isError = false;
             state.postFetched = true;
-            state.posts = action.payload.posts;
+            console.log(action.payload.posts);
+            state.posts = action.payload.posts.reverse();
+            console.log(`HERE`, state.posts);
             state.message = "Posts fetched successfully!";
         }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAllPosts"].rejected, (state, action)=>{
             state.isLoading = false;
@@ -369,7 +371,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2
 const store = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["configureStore"])({
     reducer: {
         auth: __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$authReducer$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"],
-        posts: __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$postReducer$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]
+        postReducer: __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$postReducer$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]
     }
 });
 }),

@@ -20,7 +20,7 @@ const PostSchema = mongoose.Schema({
         default:Date.now,
 
     },
-    udatedAt:{
+    updatedAt:{
         type:Date,
         default :Date.now,
 

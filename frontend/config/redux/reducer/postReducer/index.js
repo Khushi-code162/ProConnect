@@ -31,7 +31,9 @@ const postSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.postFetched = true;
-        state.posts = action.payload.posts;
+        console.log(action.payload.posts)
+        state.posts = action.payload.posts.reverse()
+        console.log(`HERE`, state.posts)
         state.message = "Posts fetched successfully!";
       })
       .addCase(getAllPosts.rejected, (state, action) => {
