@@ -154,6 +154,7 @@ export const delete_comment_of_user = async(req,res) =>{
 //likes on post 
 export const increment_likes = async(req,res) =>{
     const {post_id} = req.body;
+    console.log("increment like hit for :", post_id)
     try{
         const post = await Post.findOne({ _id: post_id });
 

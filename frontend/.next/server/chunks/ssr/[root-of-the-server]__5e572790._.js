@@ -266,7 +266,9 @@ __turbopack_context__.s([
     "deletePost",
     ()=>deletePost,
     "getAllPosts",
-    ()=>getAllPosts
+    ()=>getAllPosts,
+    "incrementPostLike",
+    ()=>incrementPostLike
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/index.jsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs [app-ssr] (ecmascript) <locals>");
@@ -311,6 +313,17 @@ const deletePost = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modu
         return thunkAPI.fulfillWithValue(post_id);
     } catch (error) {
         return thunkAPI.rejectWithValue("Something went wrong");
+    }
+});
+const incrementPostLike = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("post/incrementLike", async (post, thunkAPI)=>{
+    console.log("increment post like with :", post);
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].post(`/increment_post_likes`, {
+            post_id: post.post_id
+        });
+        return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data.message);
     }
 });
 }),
