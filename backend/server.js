@@ -10,9 +10,10 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 app.use(postRoutes);
 app.use(userRoutes);
-app.use('/uploads',express.static("uploads"));
+app.use('/upload',express.static("upload"));
 
 const start = async () => {
   try {

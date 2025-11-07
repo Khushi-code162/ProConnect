@@ -70,8 +70,17 @@
     width:100%;
     border-radius: 10px 10px 0px 0px;
     border-radius: 1px solid rgb(179, 179, 179);
-}
+    margin-bottom: 1.5rem;
+    padding : 1rem;
 
+}
+.singleCard__image img {
+    width:100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
 .singleCard__profileContainer{
     display:flex;
     align-items: center;
@@ -111,4 +120,18 @@
     gap: 1rem;
     justify-content: center;
     cursor: pointer;
+    }
+
+    .commentContainer {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top :0;
+        left : 0;
+        z-index: 2;
+        background: rgb(0,0,0,0.7);
+        overflow: hidden;
+        justify-content: center;
+        display:flex;
+        align-items: center;
     }

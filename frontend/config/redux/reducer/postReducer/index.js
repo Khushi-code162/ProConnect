@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllPosts } from "../../action/postAction";
+import { getAllComments, getAllPosts } from "../../action/postAction";
 
 const initialState = {
   posts: [],
@@ -40,6 +40,10 @@ const postSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.error?.message || "Failed to fetch posts.";
+      })
+      .addCase(getAllComments.fulfilled, (state, action) => {
+        state.postId = action.payload.post_id;
+        state.comments = action.payload.comments;
       });
   },
 });

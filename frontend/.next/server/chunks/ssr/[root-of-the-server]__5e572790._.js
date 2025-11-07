@@ -265,6 +265,8 @@ __turbopack_context__.s([
     ()=>createPost,
     "deletePost",
     ()=>deletePost,
+    "getAllComments",
+    ()=>getAllComments,
     "getAllPosts",
     ()=>getAllPosts,
     "incrementPostLike",
@@ -326,6 +328,21 @@ const incrementPostLike = (0, __TURBOPACK__imported__module__$5b$project$5d2f$no
         return thunkAPI.rejectWithValue(error.response.data.message);
     }
 });
+const getAllComments = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("post/getAllComments", async (postData, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].get("/get_comments", {
+            params: {
+                post_id: postData.post_id
+            }
+        });
+        return thunkAPI.fulfillWithValue({
+            comments: response.data,
+            post_id: postData.post_id
+        });
+    } catch (error) {
+        return thunkAPI.rejectWithValue("Something went wrong");
+    }
+});
 }),
 "[project]/config/redux/reducer/postReducer/index.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -377,6 +394,9 @@ const postSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
             state.isLoading = false;
             state.isError = true;
             state.message = action.error?.message || "Failed to fetch posts.";
+        }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAllComments"].fulfilled, (state, action)=>{
+            state.postId = action.payload.post_id;
+            state.comments = action.payload.comments;
         });
     }
 });

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost, getAllPosts } from "@/config/redux/action/postAction";
+import { createPost, getAllComments, getAllPosts } from "@/config/redux/action/postAction";
 import { getAboutUser, getAllUsers } from "@/config/redux/action/authAction";
 import UserLayout from "../Layout/UserLayout/UserLayout";
 import DashboardLayout from "../Layout/DashboardLayout/page";
@@ -201,7 +201,9 @@ function Dashboard() {
                           </svg>
                           <p>{post.likes}</p>
                         </div>
-                        <div className={Style.singleOption__optionsContainer}>
+                        <div onClick={() =>{
+                          dispatch(getAllComments({ post_id: post._id}))
+                        }} className={Style.singleOption__optionsContainer}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -216,7 +218,7 @@ function Dashboard() {
                               d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"
                             />
                           </svg>
-                          <p>Comment</p>
+                          <p>{post.Comment}</p>
                         </div>
                         <div className={Style.singleOption__optionsContainer}>
                           <svg
@@ -242,6 +244,13 @@ function Dashboard() {
               ))}
             </div>
           </div>
+
+          {
+            postState.postId !== "" &&
+           <div className={Style.commentContainer}>
+
+           </div>
+          }
         </DashboardLayout>
       </UserLayout>
     );
