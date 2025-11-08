@@ -121,7 +121,7 @@ export const get_comments_by_post = async(req,res) =>{
       "userId",
       "name username profilePicture"
     );
-        return res.status(200).json( comments);
+        return res.status(200).json( comments.reverse());
 
     }catch(error){
         return res.status(500).json({ message: error.message });

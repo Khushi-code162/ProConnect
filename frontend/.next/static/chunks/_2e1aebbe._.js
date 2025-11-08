@@ -208,7 +208,9 @@ __turbopack_context__.s([
     "getAllPosts",
     ()=>getAllPosts,
     "incrementPostLike",
-    ()=>incrementPostLike
+    ()=>incrementPostLike,
+    "postComment",
+    ()=>postComment
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/index.jsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs [app-client] (ecmascript) <locals>");
@@ -278,6 +280,22 @@ const getAllComments = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
             comments: response.data,
             post_id: postData.post_id
         });
+    } catch (error) {
+        return thunkAPI.rejectWithValue("Something went wrong");
+    }
+});
+const postComment = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("post/postComment", async (commentData, thunkAPI)=>{
+    try {
+        console.log({
+            post_id: commentData.post_id,
+            body: commentData.body
+        });
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clientServer"].post("/comment", {
+            token: localStorage.getItem("token"),
+            post_id: commentData.post_id,
+            commentBody: commentData.body
+        });
+        return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
         return thunkAPI.rejectWithValue("Something went wrong");
     }

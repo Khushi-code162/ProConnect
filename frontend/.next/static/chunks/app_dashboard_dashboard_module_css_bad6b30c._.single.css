@@ -156,4 +156,41 @@
   position: relative;
 }
 
+.dashboard-module__Gx_nyq__postCommentContainer {
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  width: 90%;
+  display: flex;
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+}
+
+.dashboard-module__Gx_nyq__postCommmentContainer > input {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border: #e4e4e4;
+  border-radius: 10px;
+  outline: none;
+  flex: .9;
+  padding-bottom: 1.2rem;
+}
+
+.dashboard-module__Gx_nyq__postCommentContainer > input:focus {
+  border: 1px solid silver;
+}
+
+.dashboard-module__Gx_nyq__postCommentContainer__commentBtn {
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  background: orange;
+  border-radius: 10px;
+  flex: .1rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1.2rem;
+}
+
 /*# sourceMappingURL=app_dashboard_dashboard_module_css_bad6b30c._.single.css.map*/

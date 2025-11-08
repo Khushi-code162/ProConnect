@@ -15,6 +15,8 @@ import Style from "./dashboard.module.css";
 import { deletePost } from "@/config/redux/action/postAction";
 import { incrementPostLike } from "@/config/redux/action/postAction";
 import { resetPostId } from "@/config/redux/reducer/postReducer";
+import { postComment } from "@/config/redux/action/postAction";
+
 
 function Dashboard() {
   const router = useRouter();
@@ -25,7 +27,7 @@ function Dashboard() {
   const [isTokenThere, setIsTokenThere] = useState(false);
 
   const postState = useSelector((state) => state.postReducer);
-
+ 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
       router.push("/login");
@@ -51,8 +53,8 @@ function Dashboard() {
 
   const [postContent, setPostContent] = useState("");
   const [fileContent, setFileContent] = useState();
-
-  //post handling
+ const [commentText, setCommentText] = useState("")
+   //post handling
   const handleUpload = async () => {
     await dispatch(createPost({ file: fileContent, body: postContent }));
     setPostContent("");
@@ -64,6 +66,7 @@ function Dashboard() {
     return (
       <UserLayout>
         <DashboardLayout>
+          
           <div className={Style.scrollComponent}>
             <div className={Style.wrapper}>
               <div className={Style.createPostContainer}>
@@ -266,10 +269,30 @@ function Dashboard() {
                 }}
                 className={Style.allCommentsContainer}>
                   {postState.comments.length === 0 && <h2>No Comments</h2>}
+                  {postState.comments.length !== 0 &&
+                  <div>
+                    {postState.comments.map((postComment, index) =>{
+                     return(
+                      <div>
+                        <p>{postComment.body}</p>
+                      </div>)
+                    })}
+                  </div>
+                  }
+
+                  <div className={Style.postCommentContainer}>
+                    <input type="" value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder= 'comment' />
+                    <div onClick={async () => {
+                      await dispatch(postComment({ post_id: postState.postId, body: commentText }))
+                      await dispatch(getAllComments({ post_id : postState.postId }))
+                    }} className= {Style.postCommentContainer__commentBtn}>
+                      <p>Comment</p>
+                  </div>
                 </div>
               </div>
             </div>
-          )}
+            </div>
+            )}
         </DashboardLayout>
       </UserLayout>
     );

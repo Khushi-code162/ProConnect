@@ -145,3 +145,40 @@
         position: relative;
         padding : 1.4rem;
     }
+
+    .postCommentContainer {
+        position: absolute;
+        bottom : 1.2rem;
+        left: 1.2rem;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
+    }
+
+    .postCommmentContainer>input {
+        flex: 0.9;
+        padding-inline: 1.5rem;
+        padding-bottom: 1.2rem;
+        border: none;
+        outline: none;
+        border-color: rgb(228, 228, 228);
+        border-radius: 10px;
+    }
+
+    .postCommentContainer>input:focus{
+        border: 1px solid silver;
+    }
+
+    .postCommentContainer__commentBtn {
+        flex: 0.1rem;
+        width: fit-content;
+        padding: 1.2rem;
+        background : orange;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+
+    }
