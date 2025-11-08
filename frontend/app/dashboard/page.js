@@ -273,10 +273,23 @@ function Dashboard() {
                   <div>
                     {postState.comments.map((postComment, index) =>{
                      return(
-                      <div>
-                        <p>{postComment.body}</p>
-                      </div>)
-                    })}
+                      <div className ={Style.singleComment} key={commentText._id}>
+                        <div classNAme={Style.singleComment_profileContainer}>
+                          <img src={
+          postComment.userId?.profilePicture 
+            ? `${BASE_URL}/${postComment.userId.profilePicture}`
+            : "/images/default.jpg"} alt="" />
+                          <div>
+                            <p style={{ fontweight: "bold", fontSize:"1.2rem"}}>{postComment.userId.name}</p>
+                            </div>
+                            </div>
+                            <p>
+                              {postComment.body}
+                            </p>
+                            </div>
+                          )
+                        })}
+                    
                   </div>
                   }
 
