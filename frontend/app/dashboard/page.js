@@ -2,7 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost, getAllComments, getAllPosts } from "@/config/redux/action/postAction";
+import {
+  createPost,
+  getAllComments,
+  getAllPosts,
+} from "@/config/redux/action/postAction";
 import { getAboutUser, getAllUsers } from "@/config/redux/action/authAction";
 import UserLayout from "../Layout/UserLayout/UserLayout";
 import DashboardLayout from "../Layout/DashboardLayout/page";
@@ -10,6 +14,7 @@ import { BASE_URL } from "@/config";
 import Style from "./dashboard.module.css";
 import { deletePost } from "@/config/redux/action/postAction";
 import { incrementPostLike } from "@/config/redux/action/postAction";
+import { resetPostId } from "@/config/redux/reducer/postReducer";
 
 function Dashboard() {
   const router = useRouter();
@@ -201,9 +206,12 @@ function Dashboard() {
                           </svg>
                           <p>{post.likes}</p>
                         </div>
-                        <div onClick={() =>{
-                          dispatch(getAllComments({ post_id: post._id}))
-                        }} className={Style.singleOption__optionsContainer}>
+                        <div
+                          onClick={() => {
+                            dispatch(getAllComments({ post_id: post._id }));
+                          }}
+                          className={Style.singleOption__optionsContainer}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -244,13 +252,24 @@ function Dashboard() {
               ))}
             </div>
           </div>
-
-          {
-            postState.postId !== "" &&
-           <div className={Style.commentContainer}>
-
-           </div>
-          }
+          {postState.postId !== "" && (
+            <div
+              onClick={() => {
+                dispatch(resetPostId());
+              }}
+              className={Style.commentsContainer}
+            >
+              <div>
+                <div 
+                onClick = {(e) =>{
+                  e.stopPropagation()
+                }}
+                className={Style.allCommentsContainer}>
+                  {postState.comments.length === 0 && <h2>No Comments</h2>}
+                </div>
+              </div>
+            </div>
+          )}
         </DashboardLayout>
       </UserLayout>
     );

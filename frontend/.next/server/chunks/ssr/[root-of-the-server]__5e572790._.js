@@ -376,6 +376,7 @@ const postSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         reset: ()=>initialState,
         resetPostId: (state)=>{
             state.postId = "";
+            state.comments = [];
         }
     },
     extraReducers: (builder)=>{

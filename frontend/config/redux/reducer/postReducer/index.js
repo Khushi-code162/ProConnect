@@ -19,6 +19,7 @@ const postSlice = createSlice({
     reset: () => initialState,
     resetPostId: (state) => {
       state.postId = "";
+      state.comments = [];
     },
   },
   extraReducers: (builder) => {

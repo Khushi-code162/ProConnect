@@ -133,7 +133,7 @@
   display: flex;
 }
 
-.dashboard-module__Gx_nyq__commentContainer {
+.dashboard-module__Gx_nyq__commentsContainer {
   z-index: 2;
   background: rgba(0, 0, 0, .7);
   justify-content: center;
@@ -145,6 +145,15 @@
   top: 0;
   left: 0;
   overflow: hidden;
+}
+
+.dashboard-module__Gx_nyq__allCommentsContainer {
+  background: #fff;
+  border-radius: 10px;
+  width: 40vw;
+  height: 80vh;
+  padding: 1.4rem;
+  position: relative;
 }
 
 /*# sourceMappingURL=app_dashboard_dashboard_module_css_bad6b30c._.single.css.map*/
