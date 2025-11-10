@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "@/config/redux/action/authAction";
 import { BASE_URL } from "@/config";
 import Style from "./discover.module.css";
+import { useRouter } from "next/navigation";
 function DiscoverPage() {
   const authState = useSelector((state) => state.auth);
 
@@ -15,6 +16,7 @@ function DiscoverPage() {
       dispatch(getAllUsers());
     }
   }, []);
+  const router = useRouter();
   return (
     <UserLayout>
       <DashboardLayout>
@@ -23,7 +25,10 @@ function DiscoverPage() {
           {authState.all_profiles_fetched &&
             authState.all_users.map((user) => {
               return (
-                <div key={user._id} className={Style.userCard}>
+                <div onClick={() =>{
+                  router.push(`/view_profile/${user.userId.username}`)
+                }}
+                key={user._id} className={Style.userCard}>
                   <img className={Style.userCard__image}
                     src={
                       user.userId?.profilePicture

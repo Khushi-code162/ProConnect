@@ -412,7 +412,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$red
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/action/authAction/index.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/index.jsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$discover$2f$discover$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__ = __turbopack_context__.i("[project]/app/discover/discover.module.css [app-ssr] (css module)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 "use client";
+;
 ;
 ;
 ;
@@ -429,6 +431,7 @@ function DiscoverPage() {
             dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAllUsers"])());
         }
     }, []);
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$UserLayout$2f$UserLayout$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$DashboardLayout$2f$page$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
             children: [
@@ -436,13 +439,16 @@ function DiscoverPage() {
                     children: "Discover page"
                 }, void 0, false, {
                     fileName: "[project]/app/discover/page.js",
-                    lineNumber: 21,
+                    lineNumber: 23,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$discover$2f$discover$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].allUSerProfile,
                     children: authState.all_profiles_fetched && authState.all_users.map((user)=>{
                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            onClick: ()=>{
+                                router.push(`/view_profile/${user.userId.username}`);
+                            },
                             className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$discover$2f$discover$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].userCard,
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -451,7 +457,7 @@ function DiscoverPage() {
                                     alt: "profile"
                                 }, void 0, false, {
                                     fileName: "[project]/app/discover/page.js",
-                                    lineNumber: 27,
+                                    lineNumber: 32,
                                     columnNumber: 19
                                 }, this),
                                 " ",
@@ -461,43 +467,43 @@ function DiscoverPage() {
                                             children: user.userId.name
                                         }, void 0, false, {
                                             fileName: "[project]/app/discover/page.js",
-                                            lineNumber: 36,
+                                            lineNumber: 41,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: user.userId.username
                                         }, void 0, false, {
                                             fileName: "[project]/app/discover/page.js",
-                                            lineNumber: 37,
+                                            lineNumber: 42,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/discover/page.js",
-                                    lineNumber: 35,
+                                    lineNumber: 40,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, user._id, true, {
                             fileName: "[project]/app/discover/page.js",
-                            lineNumber: 26,
+                            lineNumber: 28,
                             columnNumber: 17
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/app/discover/page.js",
-                    lineNumber: 22,
+                    lineNumber: 24,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/discover/page.js",
-            lineNumber: 20,
+            lineNumber: 22,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/discover/page.js",
-        lineNumber: 19,
+        lineNumber: 21,
         columnNumber: 5
     }, this);
 }
