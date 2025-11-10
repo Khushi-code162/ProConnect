@@ -1,0 +1,105 @@
+/* [project]/app/Layout/DashboardLayout/Dashboard.module.css [app-client] (css) */
+.Dashboard-module__6WC9ya__homeContainer {
+  display: flex;
+}
+
+.Dashboard-module__6WC9ya__homeContainer > div:nth-child(odd) {
+  flex: .2;
+}
+
+.Dashboard-module__6WC9ya__homeContainer > div:nth-child(2n) {
+  flex: .6;
+}
+
+.Dashboard-module__6WC9ya__homeContainer__leftBar {
+  flex-direction: column;
+  align-items: flex-start;
+  display: flex;
+}
+
+.Dashboard-module__6WC9ya__sideBarOptions {
+  cursor: pointer;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 80%;
+  max-width: 100%;
+  margin: 0;
+  padding-left: .2rem;
+  font-size: 1.2rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.Dashboard-module__6WC9ya__sideBarOptions:hover {
+  transform: scale(1.01);
+}
+
+.Dashboard-module__6WC9ya__sideBarOptions > svg {
+  min-width: 1.2em;
+  max-width: 1.2em;
+}
+
+/* [project]/app/Components/Navbar/Navbar.module.css [app-client] (css) */
+.Navbar-module__lmnXZq__container {
+  padding: 1.2rem;
+  top: 0;
+}
+
+.Navbar-module__lmnXZq__navBar {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.Navbar-module__lmnXZq__navBaroptionContainer {
+  display: flex;
+}
+
+.Navbar-module__lmnXZq__navBar p {
+  align-items: center;
+  margin: 0;
+  display: flex;
+}
+
+.Navbar-module__lmnXZq__buttonJoin {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  color: #fff;
+  background-color: #b12878;
+  border-radius: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: .8rem;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  font-size: 1.4rem;
+  transition: all .2s;
+}
+
+/* [project]/app/discover/discover.module.css [app-client] (css) */
+.discover-module__Uiu0wW__allUserProfile {
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: 80%;
+  display: flex;
+}
+
+.discover-module__Uiu0wW__userCard {
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.3rem;
+  display: flex;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, .1);
+}
+
+.discover-module__Uiu0wW__userCard__image {
+  border-radius: 50%;
+  width: 10%;
+}
+
+/*# sourceMappingURL=app_da34e256._.css.map*/
