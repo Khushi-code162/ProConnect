@@ -3,6 +3,8 @@ module.exports = [
 
 __turbopack_context__.v({
   "homeContainer": "Dashboard-module__6WC9ya__homeContainer",
+  "homeContainer__extracontainer": "Dashboard-module__6WC9ya__homeContainer__extracontainer",
+  "homeContainer__feedContainer": "Dashboard-module__6WC9ya__homeContainer__feedContainer",
   "homeContainer__leftBar": "Dashboard-module__6WC9ya__homeContainer__leftBar",
   "sideBarOptions": "Dashboard-module__6WC9ya__sideBarOptions",
 });
@@ -20,7 +22,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$DashboardLa
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$authReducer$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/reducer/authReducer/index.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-redux/dist/react-redux.mjs [app-ssr] (ecmascript)");
-'use client';
+"use client";
 ;
 ;
 ;
@@ -34,7 +36,7 @@ const DashboardLayout = ({ children })=>{
     const authState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSelector"])((state)=>state.auth);
     const { all_profiles_fetched, all_users } = authState;
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (localStorage.getItem('token') === null) {
+        if (localStorage.getItem("token") === null) {
             router.push("/login");
         }
         dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$authReducer$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["setTokenIsThere"])());
@@ -64,19 +66,19 @@ const DashboardLayout = ({ children })=>{
                                     d: "m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                                 }, void 0, false, {
                                     fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                    lineNumber: 37,
+                                    lineNumber: 40,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                lineNumber: 29,
+                                lineNumber: 32,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "Home"
                             }, void 0, false, {
                                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                lineNumber: 44,
+                                lineNumber: 47,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
@@ -104,25 +106,25 @@ const DashboardLayout = ({ children })=>{
                                     d: "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                                 }, void 0, false, {
                                     fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                    lineNumber: 58,
+                                    lineNumber: 63,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                lineNumber: 50,
+                                lineNumber: 55,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "Discover"
                             }, void 0, false, {
                                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                lineNumber: 65,
+                                lineNumber: 70,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                        lineNumber: 46,
+                        lineNumber: 49,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -144,25 +146,25 @@ const DashboardLayout = ({ children })=>{
                                     d: "M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
                                 }, void 0, false, {
                                     fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                    lineNumber: 79,
+                                    lineNumber: 86,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                lineNumber: 71,
+                                lineNumber: 78,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "my connections"
                             }, void 0, false, {
                                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                lineNumber: 85,
+                                lineNumber: 92,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                        lineNumber: 67,
+                        lineNumber: 72,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
@@ -172,21 +174,21 @@ const DashboardLayout = ({ children })=>{
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "homeContainer__feedContainer",
+                className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$DashboardLayout$2f$Dashboard$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].homeContainer__feedContainer,
                 children: children
             }, void 0, false, {
                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                lineNumber: 90,
+                lineNumber: 97,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "homeContainer__extracontainer",
+                className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$DashboardLayout$2f$Dashboard$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].homeContainer__extracontainer,
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                        children: "Top  Profiles"
+                        children: "Top Profiles"
                     }, void 0, false, {
                         fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                        lineNumber: 92,
+                        lineNumber: 99,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     authState.all_profiles_fetched && authState.all_users.map((profiles)=>{
@@ -196,19 +198,19 @@ const DashboardLayout = ({ children })=>{
                                 children: profiles.userId.name
                             }, void 0, false, {
                                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                                lineNumber: 98,
-                                columnNumber: 15
+                                lineNumber: 108,
+                                columnNumber: 17
                             }, ("TURBOPACK compile-time value", void 0))
                         }, profiles._id, false, {
                             fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                            lineNumber: 97,
-                            columnNumber: 13
+                            lineNumber: 104,
+                            columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0));
                     })
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
-                lineNumber: 91,
+                lineNumber: 98,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]

@@ -53,8 +53,10 @@
 }
 
 .Dashboard-module__6WC9ya__homeContainer__leftBar {
+  border-right: 1px solid #e2dede;
   flex-direction: column;
   align-items: flex-start;
+  gap: 1.2rem;
   display: flex;
 }
 
@@ -78,6 +80,16 @@
 .Dashboard-module__6WC9ya__sideBarOptions > svg {
   min-width: 1.2em;
   max-width: 1.2em;
+}
+
+.Dashboard-module__6WC9ya__homeContainer__extracontainer {
+  border-left: 1px solid #dedede;
+  padding-left: 1.2rem;
+}
+
+.Dashboard-module__6WC9ya__homeContainer__feedContainer {
+  padding-left: .8rem;
+  padding-right: .8rem;
 }
 
 /* [project]/app/dashboard/dashboard.module.css [app-client] (css) */

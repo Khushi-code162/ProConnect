@@ -131,8 +131,10 @@
 }
 
 .Dashboard-module__6WC9ya__homeContainer__leftBar {
+  border-right: 1px solid #e2dede;
   flex-direction: column;
   align-items: flex-start;
+  gap: 1.2rem;
   display: flex;
 }
 

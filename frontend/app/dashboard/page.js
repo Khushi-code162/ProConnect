@@ -7,7 +7,7 @@ import {
   getAllComments,
   getAllPosts,
 } from "@/config/redux/action/postAction";
-import { getAboutUser, getAllUsers } from "@/config/redux/action/authAction";
+import { getAboAutUser, getAllUsers } from "@/config/redux/action/authAction";
 import UserLayout from "../Layout/UserLayout/UserLayout";
 import DashboardLayout from "../Layout/DashboardLayout/page";
 import { BASE_URL } from "@/config";

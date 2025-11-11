@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import styles from "./Dashboard.module.css";
 import { useRouter } from "next/navigation";
@@ -10,22 +10,25 @@ const DashboardLayout = ({ children }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
-  const {all_profiles_fetched, all_users} =authState;
+  const { all_profiles_fetched, all_users } = authState;
 
-  useEffect(() =>{
-    if(localStorage.getItem('token') === null) {
-      router.push("/login")
+  useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      router.push("/login");
     }
-    dispatch(setTokenIsThere())
-  })
+    dispatch(setTokenIsThere());
+  });
 
   return (
     <div className={styles.homeContainer}>
       {/* Left sidebar (odd child) */}
       <div className={styles.homeContainer__leftBar}>
-        <div onClick={() =>{
-          router.push("/dashboard")
-        }}className={styles.sideBarOptions}>
+        <div
+          onClick={() => {
+            router.push("/dashboard");
+          }}
+          className={styles.sideBarOptions}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -43,10 +46,12 @@ const DashboardLayout = ({ children }) => {
 
           <p>Home</p>
         </div>
-        <div onClick={() => {
-          router.push("/discover")
-        }}
-        className={styles.sideBarOptions}>
+        <div
+          onClick={() => {
+            router.push("/discover");
+          }}
+          className={styles.sideBarOptions}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -64,10 +69,12 @@ const DashboardLayout = ({ children }) => {
 
           <p>Discover</p>
         </div>
-        <div onClick={() =>{
-          router.push("/my_connections")
-        }} 
-        className={styles.sideBarOptions}>
+        <div
+          onClick={() => {
+            router.push("/my_connections");
+          }}
+          className={styles.sideBarOptions}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -87,19 +94,21 @@ const DashboardLayout = ({ children }) => {
       </div>
 
       {/* Main content (even child) */}
-      <div className="homeContainer__feedContainer">{children}</div>
-      <div className="homeContainer__extracontainer">
-        <h3>Top  Profiles</h3>
-        
-        {authState.all_profiles_fetched && authState.all_users.map((profiles) =>{
+      <div className={styles.homeContainer__feedContainer}>{children}</div>
+      <div className={styles.homeContainer__extracontainer}>
+        <h3>Top Profiles</h3>
 
-          return (
-            <div key={profiles._id} className= {styles.extracontainer__profile}>
-              <p>{profiles.userId.name}</p>
+        {authState.all_profiles_fetched &&
+          authState.all_users.map((profiles) => {
+            return (
+              <div
+                key={profiles._id}
+                className={styles.extracontainer__profile}
+              >
+                <p>{profiles.userId.name}</p>
               </div>
-          )
-
-        })}
+            );
+          })}
       </div>
     </div>
   );

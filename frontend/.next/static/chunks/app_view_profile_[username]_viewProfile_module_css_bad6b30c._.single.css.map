@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/view_profile/[username]/viewProfile.module.css"],"sourcesContent":[".container {\r\n    padding: 1.3rem;\r\n    background: rgb(230, 230, 230);\r\n}\r\n\r\n.backDropContainer {\r\n    width: 100%;\r\n    height: 30vh;\r\n    background: url(\"https://tse1.mm.bing.net/th/id/OIP.zbv4A57onPleikp9LWKLhwHaCa?cb=ucfimgc2&rs=1&pid=ImgDetMain&o=7&rm=3\");\r\n    background-size: cover;\r\n    background-repeat: none;\r\n    position:relative;\r\n    border-radius:20px;\r\n\r\n}\r\n\r\n.backDropContainer img{\r\n    width: 10em;\r\n    height: 10em;\r\n    object-fit:cover;\r\n    border-radius: 50%;\r\n    position: absolute;\r\n    bottom: -30%;\r\n    left :8%;\r\n    text-align: center;\r\n\r\n\r\n}"],"names":[],"mappings":"AAAA;;;;;AAKA;;;;;;;;;AAWA"}}]
+}
