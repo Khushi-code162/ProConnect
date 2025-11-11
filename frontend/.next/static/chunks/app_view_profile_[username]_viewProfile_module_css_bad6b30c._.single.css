@@ -24,4 +24,37 @@
   left: 8%;
 }
 
+.viewProfile-module__rrYFRW__profileContainer__details {
+  padding-top: 6.6rem;
+}
+
+.viewProfile-module__rrYFRW__card {
+  align-items: center;
+  gap: 1.4rem;
+  display: flex;
+}
+
+.viewProfile-module__rrYFRW__card__profileContainer {
+  display: flex;
+}
+
+.viewProfile-module__rrYFRW__card__profileContainer > img {
+  object-fit: cover;
+  width: 3.4rem;
+  height: 3.4rem;
+}
+
+.viewProfile-module__rrYFRW__connectBtn {
+  color: #fff;
+  cursor: pointer;
+  background: rgba(3, 93, 183, .906);
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  padding-top: .3rem;
+  padding-bottom: .3rem;
+  padding-left: .8rem;
+  padding-right: .8rem;
+}
+
 /*# sourceMappingURL=app_view_profile_%5Busername%5D_viewProfile_module_css_bad6b30c._.single.css.map*/

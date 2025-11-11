@@ -160,6 +160,16 @@
   max-width: 1.2em;
 }
 
+.Dashboard-module__6WC9ya__homeContainer__extracontainer {
+  border-left: 1px solid #dedede;
+  padding-left: 1.2rem;
+}
+
+.Dashboard-module__6WC9ya__homeContainer__feedContainer {
+  padding-left: .8rem;
+  padding-right: .8rem;
+}
+
 /* [project]/app/dashboard/dashboard.module.css [app-client] (css) */
 .dashboard-module__Gx_nyq__scrollComponent {
   flex-direction: column;

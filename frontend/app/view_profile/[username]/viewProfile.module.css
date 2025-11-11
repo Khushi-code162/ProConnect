@@ -26,3 +26,35 @@
 
 
 }
+
+.profileContainer__details {
+    padding-top: 6.6rem;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+}
+
+.card__profileContainer {
+    display: flex;
+}
+
+.card__profileContainer>img {
+    width: 3.4rem;
+    height: auto;
+    height : 3.4rem;
+    object-fit: cover;
+}
+
+.connectBtn {
+    padding-inline: 0.8rem;
+    padding-block: 0.3rem;
+    background: rgb(3, 93,183, 0.905);
+    outline: none;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}

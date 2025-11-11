@@ -211,6 +211,8 @@ __turbopack_context__.v({
 
 __turbopack_context__.v({
   "homeContainer": "Dashboard-module__6WC9ya__homeContainer",
+  "homeContainer__extracontainer": "Dashboard-module__6WC9ya__homeContainer__extracontainer",
+  "homeContainer__feedContainer": "Dashboard-module__6WC9ya__homeContainer__feedContainer",
   "homeContainer__leftBar": "Dashboard-module__6WC9ya__homeContainer__leftBar",
   "sideBarOptions": "Dashboard-module__6WC9ya__sideBarOptions",
 });
@@ -387,7 +389,7 @@ const DashboardLayout = (param)=>{
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "homeContainer__feedContainer",
+                className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$DashboardLayout$2f$Dashboard$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].homeContainer__feedContainer,
                 children: children
             }, void 0, false, {
                 fileName: "[project]/app/Layout/DashboardLayout/page.js",
@@ -395,7 +397,7 @@ const DashboardLayout = (param)=>{
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: style.homeContainer__extracontainer,
+                className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$DashboardLayout$2f$Dashboard$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].homeContainer__extracontainer,
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                         children: "Top Profiles"
