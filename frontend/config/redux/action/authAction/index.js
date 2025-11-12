@@ -79,3 +79,55 @@ export const getAllUsers = createAsyncThunk(
   }
 }
 )
+
+export const sendConnectionRequest = createAsyncThunk(
+  "user/sendConnectionRequest",
+  async(user , thunkAPI) =>{
+    try{
+        const response = await clientServer.post("/user/send_connection_request" , {
+          token: user.token,
+          connectionId: user.user_id
+        })
+        return thunkAPI.fulfillWithValue(response.data);
+
+    }catch(error){
+      return thunkAPI.rejectWithValue(error.response.data.message)
+
+    }
+  }
+)
+
+export const getConnectionsRequest = createAsyncThunk(
+  "user/getConnectionRequest",
+  async(user, thunkAPI) => {
+    try{
+      const response = await clientServer.get("/user/getConnectionRequests", {
+        params: {
+          token: user.token
+        }
+      })
+      return thunkAPI.fulfillWithValue(response.data.connections)
+
+    }catch(error){
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+)
+
+
+export const AcceptConnection = createAsyncThunk(
+  async(user, thunkAPI) =>{
+    async(user, thunkAPI) =>{
+      try{
+        const response = await clientServer.post("/user/accept_connection_request" ,{
+          token : user.token,
+          connection_id : useErrorOverlayReducer.connectionId,
+          action_type: user.action
+        });
+        return thunkAPI.fulfillWithValue(response.data);
+      }catch(error){
+        return thunkAPI.rejectWithValue(error.response.data.message)
+      }
+    }
+  }
+)
