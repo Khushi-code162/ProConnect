@@ -267,14 +267,22 @@ const postComment = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mod
 "use strict";
 
 __turbopack_context__.s([
+    "AcceptConnection",
+    ()=>AcceptConnection,
     "getAboutUser",
     ()=>getAboutUser,
     "getAllUsers",
     ()=>getAllUsers,
+    "getConnectionsRequest",
+    ()=>getConnectionsRequest,
+    "getMyConnectionsRequest",
+    ()=>getMyConnectionsRequest,
     "loginUser",
     ()=>loginUser,
     "registerUser",
-    ()=>registerUser
+    ()=>registerUser,
+    "sendConnectionRequest",
+    ()=>sendConnectionRequest
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/index.jsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs [app-rsc] (ecmascript) <locals>");
@@ -288,14 +296,16 @@ const loginUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         });
         if (response.data.token) {
             localStorage.setItem("token", response.data.token);
+            return thunkAPI.fulfillWithValue(response.data.token);
         } else {
             return thunkAPI.rejectWithValue({
-                message: "token not provided"
+                message: "Token not provided"
             });
         }
-        return thunkAPI.fulfillWithValue(response.data.token);
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
+        return thunkAPI.rejectWithValue(error.response?.data || {
+            message: "Login failed"
+        });
     }
 });
 const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/register", async (user, thunkAPI)=>{
@@ -306,10 +316,8 @@ const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
             email: user.email,
             name: user.name
         });
-        // Check if backend returned a message or token etc.
         return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-        // Ensure proper error handling
         return thunkAPI.rejectWithValue(error.response?.data || {
             message: "Registration failed"
         });
@@ -317,29 +325,79 @@ const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
 });
 const getAboutUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getAboutUser", async (user, thunkAPI)=>{
     try {
-        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clientServer"].get('/get_user_and_profile', {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clientServer"].get("/get_user_and_profile", {
             params: {
                 token: user.token
             }
         });
         return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
+        return thunkAPI.rejectWithValue(error.response?.data || {
+            message: "Failed to fetch user"
+        });
     }
 });
 const getAllUsers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getAllUsers", async (_, thunkAPI)=>{
     try {
         const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clientServer"].get("/user/get_all_users");
         return thunkAPI.fulfillWithValue(response.data);
-    } catch (err) {
-        return thunkAPI.rejectWithValue(err.response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data || {
+            message: "Failed to fetch users"
+        });
+    }
+});
+const getMyConnectionsRequest = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getMyConnections", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clientServer"].get("/user/getMyConnections", {
+            params: {
+                token: user.token
+            }
+        });
+        return thunkAPI.fulfillWithValue(response.data.connections);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to fetch connections");
+    }
+});
+const sendConnectionRequest = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/sendConnectionRequest", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clientServer"].post("/user/send_connection_request", {
+            token: user.token,
+            connectionId: user.user_id
+        });
+        return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to send connection request");
+    }
+});
+const getConnectionsRequest = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getConnectionRequest", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clientServer"].get("/user/getConnectionRequests", {
+            params: {
+                token: user.token
+            }
+        });
+        return thunkAPI.fulfillWithValue(response.data.connections);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to fetch connection requests");
+    }
+});
+const AcceptConnection = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/acceptConnection", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clientServer"].post("/user/accept_connection_request", {
+            token: user.token,
+            connection_id: user.connectionId,
+            action_type: user.action
+        });
+        return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to update connection request");
     }
 });
 }),
 "[project]/app/view_profile/[username]/page.jsx [app-rsc] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-// app/[username]/page.js
 __turbopack_context__.s([
     "default",
     ()=>ViewProfilePage
@@ -352,8 +410,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$UserLayout$
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$view_profile$2f5b$username$5d2f$viewProfile$2e$module$2e$css__$5b$app$2d$rsc$5d$__$28$css__module$29$__ = __turbopack_context__.i("[project]/app/view_profile/[username]/viewProfile.module.css [app-rsc] (css module)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$rsc$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-redux/dist/rsc.mjs [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/action/postAction/index.js [app-rsc] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/router.js [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$api$2f$navigation$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/next/dist/api/navigation.react-server.js [app-rsc] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$components$2f$navigation$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/components/navigation.react-server.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/action/authAction/index.js [app-rsc] (ecmascript)");
+'use clirnt';
 ;
 ;
 ;
@@ -366,7 +426,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f
 ;
 ;
 async function ViewProfilePage({ params }) {
-    const Router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useRouter"])();
+    const Router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$components$2f$navigation$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useRouter"])();
     const postReducer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$rsc$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useSelector"])((state)=>state.postReducer);
     const dispatch = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$rsc$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useDispatch"])();
     const authState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$rsc$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useSelector"])((state)=>state.auth);
@@ -374,7 +434,7 @@ async function ViewProfilePage({ params }) {
     const [isCurrentUserInConnection, setIsCurrentUserInConnection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useState"])(false);
     const getUserPost = async ()=>{
         await dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getAllPosts"])());
-        await dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getConnectionRequest"])({
+        await dispatch(getConnectionRequest({
             token: localStorage.getItem("token")
         }));
     };
@@ -482,7 +542,7 @@ async function ViewProfilePage({ params }) {
                                             columnNumber: 15
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: ()=>{
-                                                dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["sendConnectionRequest"])({
+                                                dispatch(sendConnectionRequest({
                                                     token: localStorage.getItem("token"),
                                                     user_id: userProfile.userId._id
                                                 }));

@@ -90,14 +90,22 @@ const clientServer = axios.create({
 "use strict";
 
 __turbopack_context__.s([
+    "AcceptConnection",
+    ()=>AcceptConnection,
     "getAboutUser",
     ()=>getAboutUser,
     "getAllUsers",
     ()=>getAllUsers,
+    "getConnectionsRequest",
+    ()=>getConnectionsRequest,
+    "getMyConnectionsRequest",
+    ()=>getMyConnectionsRequest,
     "loginUser",
     ()=>loginUser,
     "registerUser",
-    ()=>registerUser
+    ()=>registerUser,
+    "sendConnectionRequest",
+    ()=>sendConnectionRequest
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/index.jsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs [app-ssr] (ecmascript) <locals>");
@@ -111,14 +119,16 @@ const loginUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         });
         if (response.data.token) {
             localStorage.setItem("token", response.data.token);
+            return thunkAPI.fulfillWithValue(response.data.token);
         } else {
             return thunkAPI.rejectWithValue({
-                message: "token not provided"
+                message: "Token not provided"
             });
         }
-        return thunkAPI.fulfillWithValue(response.data.token);
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
+        return thunkAPI.rejectWithValue(error.response?.data || {
+            message: "Login failed"
+        });
     }
 });
 const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/register", async (user, thunkAPI)=>{
@@ -129,10 +139,8 @@ const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
             email: user.email,
             name: user.name
         });
-        // Check if backend returned a message or token etc.
         return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-        // Ensure proper error handling
         return thunkAPI.rejectWithValue(error.response?.data || {
             message: "Registration failed"
         });
@@ -140,22 +148,76 @@ const registerUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
 });
 const getAboutUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getAboutUser", async (user, thunkAPI)=>{
     try {
-        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].get('/get_user_and_profile', {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].get("/get_user_and_profile", {
             params: {
                 token: user.token
             }
         });
         return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
+        return thunkAPI.rejectWithValue(error.response?.data || {
+            message: "Failed to fetch user"
+        });
     }
 });
 const getAllUsers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getAllUsers", async (_, thunkAPI)=>{
     try {
         const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].get("/user/get_all_users");
         return thunkAPI.fulfillWithValue(response.data);
-    } catch (err) {
-        return thunkAPI.rejectWithValue(err.response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data || {
+            message: "Failed to fetch users"
+        });
+    }
+});
+const getMyConnectionsRequest = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getMyConnections", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].get("/user/getMyConnections", {
+            params: {
+                token: user.token
+            }
+        });
+        return thunkAPI.fulfillWithValue(response.data.connections);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to fetch connections");
+    }
+});
+const sendConnectionRequest = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/sendConnectionRequest", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].post("/user/send_connection_request", {
+            token: user.token,
+            connectionId: user.user_id
+        });
+        thunkAPI.dispatch(getConnectionsRequest({
+            token: user.token
+        }));
+        return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to send connection request");
+    }
+});
+const getConnectionsRequest = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/getConnectionRequest", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].get("/user/getConnectionRequests", {
+            params: {
+                token: user.token
+            }
+        });
+        return thunkAPI.fulfillWithValue(response.data.connections);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to fetch connection requests");
+    }
+});
+const AcceptConnection = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$redux$2d$toolkit$2e$modern$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createAsyncThunk"])("user/acceptConnection", async (user, thunkAPI)=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clientServer"].post("/user/accept_connection_request", {
+            token: user.token,
+            connection_id: user.connectionId,
+            action_type: user.action
+        });
+        return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to update connection request");
     }
 });
 }),
@@ -251,6 +313,14 @@ const authSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
             state.isError = false;
             state.all_profiles_fetched = true;
             state.all_users = action.payload.profiles;
+        }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getConnectionsRequest"].fulfilled, (state, action)=>{
+            state.connections = action.payload;
+        }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getConnectionsRequest"].rejected, (state, action)=>{
+            state.message = action.payload;
+        }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getMyConnectionsRequest"].fulfilled, (state, action)=>{
+            state.message = action.payload;
+        }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getMyConnectionsRequest"].rejected, (state, action)=>{
+            state.message = action.payload;
         });
     }
 });
