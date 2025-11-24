@@ -365,6 +365,9 @@ const sendConnectionRequest = (0, __TURBOPACK__imported__module__$5b$project$5d2
             token: user.token,
             connectionId: user.user_id
         });
+        thunkAPI.dispatch(getConnectionsRequest({
+            token: user.token
+        }));
         return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to send connection request");
@@ -413,7 +416,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$api$2f$navigation$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/next/dist/api/navigation.react-server.js [app-rsc] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$components$2f$navigation$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/components/navigation.react-server.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/action/authAction/index.js [app-rsc] (ecmascript)");
-'use clirnt';
 ;
 ;
 ;
@@ -430,11 +432,13 @@ async function ViewProfilePage({ params }) {
     const postReducer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$rsc$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useSelector"])((state)=>state.postReducer);
     const dispatch = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$rsc$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useDispatch"])();
     const authState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$rsc$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useSelector"])((state)=>state.auth);
+    const [userProfile, setUserProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useState"])(null);
     const [userPosts, setUserPosts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isCurrentUserInConnection, setIsCurrentUserInConnection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useState"])(false);
-    const getUserPost = async ()=>{
-        await dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getAllPosts"])());
-        await dispatch(getConnectionRequest({
+    const [isConnectionNull, setIsConnectionNull] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useState"])(true);
+    const getUserPost = ()=>{
+        dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getAllPosts"])());
+        dispatch(getConnectionsRequest({
             token: localStorage.getItem("token")
         }));
     };
@@ -447,9 +451,12 @@ async function ViewProfilePage({ params }) {
         postReducer.posts
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        console.log(authState.connections, userProfile.userId._id);
+        console.log(authState.connections, userProfile?.userId._id);
         if (authState.connections.some((user)=>user.connectionId._id === userProfile.userId._id)) {
             setIsCurrentUserInConnection(true);
+            if (authState.connections.find((user)=>user.connectionId._id === userProfile.userId._id).status_accepted === "true") {
+                setIsConnectionNull(false);
+            }
         }
     }, [
         authState.connections
@@ -457,15 +464,16 @@ async function ViewProfilePage({ params }) {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         getUserPost();
     }, []);
-    // const username = params.username; // gets value from URL [username]
-    // console.log("from view");
-    // console.group(username);
-    // // Fetch user profile first
-    // const request = await clientServer.get("/user/get_profile_based_on_username", {
-    //   params: { username }
-    // });
-    // const response = request.data;
-    // console.log(response);
+    const { username } = params;
+    console.log("from view");
+    // Fetch user profile first
+    const request = await __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clientServer"].get("/user/get_profile_based_on_username", {
+        params: {
+            username
+        }
+    });
+    const response = request.data;
+    console.log(response);
     // const userProfile = response.profile;
     // Render the layout with fetched data
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Layout$2f$UserLayout$2f$UserLayout$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -481,12 +489,12 @@ async function ViewProfilePage({ params }) {
                             alt: "backdrop"
                         }, void 0, false, {
                             fileName: "[project]/app/view_profile/[username]/page.jsx",
-                            lineNumber: 72,
+                            lineNumber: 77,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/view_profile/[username]/page.jsx",
-                        lineNumber: 71,
+                        lineNumber: 76,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -511,60 +519,61 @@ async function ViewProfilePage({ params }) {
                                             },
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                    children: userProfile.userId.name
+                                                    children: userProfile?.userId?.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                                    lineNumber: 85,
+                                                    lineNumber: 90,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     style: {
                                                         color: "grey"
                                                     },
-                                                    children: "@userProfile.userId.username"
+                                                    children: userProfile?.userId?.username
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                                    lineNumber: 86,
+                                                    lineNumber: 91,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                            lineNumber: 84,
+                                            lineNumber: 89,
                                             columnNumber: 15
                                         }, this),
-                                        isCurrentUserInConnection ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        userProfile && !isCurrentUserInConnection ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$view_profile$2f5b$username$5d2f$viewProfile$2e$module$2e$css__$5b$app$2d$rsc$5d$__$28$css__module$29$__["default"].connectBtn,
+                                            onClick: ()=>{
+                                                dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$authAction$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["sendConnectionRequest"])({
+                                                    token: localStorage.getItem("token"),
+                                                    connectionId: userProfile.userId._id
+                                                }));
+                                                setIsConnectionNull(false);
+                                            },
+                                            children: isConnectionNull ? "Connect" : "Pending"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/view_profile/[username]/page.jsx",
+                                            lineNumber: 95,
+                                            columnNumber: 3
+                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$view_profile$2f5b$username$5d2f$viewProfile$2e$module$2e$css__$5b$app$2d$rsc$5d$__$28$css__module$29$__["default"].connectedButton,
                                             children: "Connected"
                                         }, void 0, false, {
                                             fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                            lineNumber: 90,
-                                            columnNumber: 15
-                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            onClick: ()=>{
-                                                dispatch(sendConnectionRequest({
-                                                    token: localStorage.getItem("token"),
-                                                    user_id: userProfile.userId._id
-                                                }));
-                                            },
-                                            className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$view_profile$2f5b$username$5d2f$viewProfile$2e$module$2e$css__$5b$app$2d$rsc$5d$__$28$css__module$29$__["default"].connectBtn,
-                                            children: "Connect"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                            lineNumber: 92,
-                                            columnNumber: 15
+                                            lineNumber: 108,
+                                            columnNumber: 3
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                children: userProfile.bio
+                                                children: userProfile?.bio
                                             }, void 0, false, {
                                                 fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                                lineNumber: 98,
+                                                lineNumber: 113,
                                                 columnNumber: 15
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                            lineNumber: 97,
+                                            lineNumber: 112,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -576,21 +585,21 @@ async function ViewProfilePage({ params }) {
                                                     children: "Recent Activity"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                                    lineNumber: 102,
+                                                    lineNumber: 117,
                                                     columnNumber: 15
                                                 }, this),
-                                                userPosts.map((post)=>{
+                                                userPosts.map((posts)=>{
                                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$view_profile$2f5b$username$5d2f$viewProfile$2e$module$2e$css__$5b$app$2d$rsc$5d$__$28$css__module$29$__["default"].postCard,
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$view_profile$2f5b$username$5d2f$viewProfile$2e$module$2e$css__$5b$app$2d$rsc$5d$__$28$css__module$29$__["default"].card__profileContainer,
-                                                            children: post.media !== "" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                src: `${__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["BASE_URL"]}/${post.media}`,
+                                                            children: posts.media !== "" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                                src: `${__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$index$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["BASE_URL"]}/${posts.media}`,
                                                                 alt: ""
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                                                lineNumber: 107,
-                                                                columnNumber: 42
+                                                                lineNumber: 122,
+                                                                columnNumber: 43
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 style: {
                                                                     width: "3.4rem",
@@ -598,30 +607,30 @@ async function ViewProfilePage({ params }) {
                                                                 }
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                                                lineNumber: 107,
-                                                                columnNumber: 91
+                                                                lineNumber: 122,
+                                                                columnNumber: 93
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                                            lineNumber: 106,
+                                                            lineNumber: 121,
                                                             columnNumber: 19
                                                         }, this)
-                                                    }, post._id, false, {
+                                                    }, posts._id, false, {
                                                         fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                                        lineNumber: 105,
+                                                        lineNumber: 120,
                                                         columnNumber: 19
                                                     }, this);
                                                 })
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                            lineNumber: 101,
+                                            lineNumber: 116,
                                             columnNumber: 13
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                    lineNumber: 83,
+                                    lineNumber: 88,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -630,34 +639,34 @@ async function ViewProfilePage({ params }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/app/view_profile/[username]/page.jsx",
-                                    lineNumber: 116,
+                                    lineNumber: 131,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/view_profile/[username]/page.jsx",
-                            lineNumber: 82,
+                            lineNumber: 87,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/view_profile/[username]/page.jsx",
-                        lineNumber: 81,
+                        lineNumber: 86,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/view_profile/[username]/page.jsx",
-                lineNumber: 70,
+                lineNumber: 75,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/view_profile/[username]/page.jsx",
-            lineNumber: 69,
+            lineNumber: 74,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/view_profile/[username]/page.jsx",
-        lineNumber: 68,
+        lineNumber: 73,
         columnNumber: 5
     }, this);
 }

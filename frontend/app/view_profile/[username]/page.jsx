@@ -8,9 +8,9 @@ import { BASE_URL } from '@/config';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '@/config/redux/action/postAction';
 import { useRouter } from 'next/navigation';
-import { sendConnectionRequest , getConnectionRequest } from '@/config/redux/action/authAction/index.js';
+import { sendConnectionRequest , getConnectionsRequest } from '@/config/redux/action/authAction/index.js';
 
-export default async function ViewProfilePage({ params }) {
+export default function ViewProfilePage({ params }) {
   const Router = useRouter();
   const postReducer = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export default async function ViewProfilePage({ params }) {
 
   useEffect(() => {
     let post = postReducer.posts.filter((post) => {
-      return post.userId.username === routerServerGlobal.query.username
+      return post.userId.username === username;
     })
 
     setUserPosts(post);
@@ -51,18 +51,25 @@ export default async function ViewProfilePage({ params }) {
     getUserPost();
   },[])
 
-  const username = params.username; // gets value from URL [username]
+  const {username} = React.use(params); 
 
   console.log("from view");
-  console.group(username);
+
 
   // Fetch user profile first
-  const request = await clientServer.get("/user/get_profile_based_on_username", {
-    params: { username }
-  });
+  // Inside useEffect
+useEffect(() => {
+  const fetchProfile = async () => {
+    try {
+      const res = await clientServer.get(`/user/get_profile_based_on_username`, { params: { username } });
+      setUserProfile(res.data.profile);
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    }
+  };
+  fetchProfile();
+}, [username]);
 
-  const response = request.data;
-  console.log(response);
 
   // const userProfile = response.profile;
 
@@ -91,6 +98,20 @@ export default async function ViewProfilePage({ params }) {
                 <p style={{ color: "grey" }}>{userProfile?.userId?.username}</p>
 
               </div>
+              <div className = "workHistory">
+                 <h4>work history</h4>
+                 <div className={Style.workHistroyContainer}>{
+                  userProfile?.pastwork?.map((work, index) =>{
+                    return ( 
+                      <div key={index} className={Style.workHistoryCard}>
+                        <p style={{ fontWeight: "bold" , display: "flex", alignItems: "center", gap: "0.8"}}>{work.company}-{work.position}</p>
+                        <p>{work.years}</p>
+                        </div>
+                    )
+                  })}
+
+                 </div>
+              </div>
               {userProfile && !isCurrentUserInConnection ? (
   <button
     className={Style.connectBtn}
@@ -115,11 +136,11 @@ export default async function ViewProfilePage({ params }) {
 
             <div style={{flex: "0.2"}}>
               <h3>Recent Activity</h3>
-              {userPosts.map((post) => {
+              {userPosts.map((posts) => {
                 return (
-                  <div key={post._id} className={Style.postCard}>
+                  <div key={posts._id} className={Style.postCard}>
                   <div className={Style.card__profileContainer}>
-                    {post.media !== "" ? <img src={`${BASE_URL}/${post.media}`}alt="" /> :<div style={{width: "3.4rem" , height: "3.4rem" }}></div>}
+                    {posts.media !== "" ? <img src={`${BASE_URL}/${posts.media}`}alt="" /> :<div style={{width: "3.4rem" , height: "3.4rem" }}></div>}
 
                   </div>
                   </div>
