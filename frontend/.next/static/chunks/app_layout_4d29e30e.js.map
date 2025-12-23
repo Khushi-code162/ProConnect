@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/layout.js"],"sourcesContent":["\"use client\";\n\nimport { Provider } from \"react-redux\";\nimport { store } from \"@/config/redux/store\";\nimport \"./globals.css\";\n\nexport default function RootLayout({ children }) {\n  return (\n    <html lang=\"en\">\n      <body>\n        <Provider store={store}>\n          {children}\n        </Provider>\n      </body>\n    </html>\n  );\n}\n"],"names":[],"mappings":";;;;;AAEA;;;;;;AAFA;;;;;AAMe,SAAS,WAAW,KAAY;QAAZ,EAAE,QAAQ,EAAE,GAAZ;IACjC,qBACE,6LAAC;QAAK,MAAK;kBACT,cAAA,6LAAC;sBACC,cAAA,6LAAC,wKAAQ;gBAAC,OAAO;0BACd;;;;;;;;;;;;;;;;AAKX;KAVwB","debugId":null}}]
-}

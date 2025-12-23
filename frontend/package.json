@@ -2,18 +2,18 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "true": "module",
+  "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.2",
     "axios": "^1.12.2",
     "next": "15.5.5",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-redux": "^9.2.0"
   }
 }

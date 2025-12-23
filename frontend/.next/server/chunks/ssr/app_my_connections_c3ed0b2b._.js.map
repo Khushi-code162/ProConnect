@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/my_connections/my_connection.module.css [app-ssr] (css module)"],"sourcesContent":["__turbopack_context__.v({\n});\n"],"names":[],"mappings":"AAAA;AACA"}}]
-}

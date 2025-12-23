@@ -98,7 +98,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "D:\\ProConnect\\frontend",
+    "outputFileTracingRoot": "D:\\ProConnect",
     "experimental": {
       "useSkewCookie": false,
       "cacheLife": {
@@ -288,11 +288,11 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.mjs",
     "turbopack": {
-      "root": "D:\\ProConnect\\frontend"
+      "root": "D:\\ProConnect"
     }
   },
   "appDir": "D:\\ProConnect\\frontend",
-  "relativeAppDir": "",
+  "relativeAppDir": "frontend",
   "files": [
     ".next\\routes-manifest.json",
     ".next\\server\\pages-manifest.json",

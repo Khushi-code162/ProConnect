@@ -1,4 +1,12 @@
 {
+  "/Components/Navbar/page": "/Components/Navbar",
+  "/Layout/DashboardLayout/page": "/Layout/DashboardLayout",
   "/_not-found/page": "/_not-found",
-  "/page": "/"
+  "/dashboard/page": "/dashboard",
+  "/discover/page": "/discover",
+  "/login/page": "/login",
+  "/my_connections/page": "/my_connections",
+  "/page": "/",
+  "/profile/page": "/profile",
+  "/view_profile/[username]/page": "/view_profile/[username]"
 }

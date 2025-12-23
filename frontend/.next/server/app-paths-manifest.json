@@ -1,6 +1,12 @@
 {
+  "/Components/Navbar/page": "app/Components/Navbar/page.js",
+  "/Layout/DashboardLayout/page": "app/Layout/DashboardLayout/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/dashboard/page": "app/dashboard/page.js",
+  "/discover/page": "app/discover/page.js",
   "/login/page": "app/login/page.js",
+  "/my_connections/page": "app/my_connections/page.js",
   "/page": "app/page.js",
-  "/profile/page": "app/profile/page.js"
+  "/profile/page": "app/profile/page.js",
+  "/view_profile/[username]/page": "app/view_profile/[username]/page.js"
 }
