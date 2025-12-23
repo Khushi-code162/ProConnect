@@ -51,6 +51,59 @@
   padding-right: .8rem;
 }
 
+.Dashboard-module__6WC9ya__mobileNavBar {
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 6vh;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.Dashboard-module__6WC9ya__singleNavItemHolder_mobileView {
+  cursor: pointer;
+}
+
+.Dashboard-module__6WC9ya__mobileNavBar svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .Dashboard-module__6WC9ya__homeContainer {
+    flex-direction: column;
+    display: flex;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer__leftBar {
+    display: none;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer__feedContainer {
+    order: 1;
+    width: 100%;
+    padding-bottom: 80px;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer__extracontainer {
+    border-top: 1px solid #e0e0e0;
+    border-left: none;
+    order: 2;
+    width: 100%;
+    margin-bottom: 60px;
+    padding: 1rem;
+    display: block;
+  }
+
+  .Dashboard-module__6WC9ya__mobileNavBar {
+    display: flex;
+  }
+}
+
 /* [project]/app/Components/Navbar/Navbar.module.css [app-client] (css) */
 .Navbar-module__lmnXZq__container {
   padding: 1.2rem;

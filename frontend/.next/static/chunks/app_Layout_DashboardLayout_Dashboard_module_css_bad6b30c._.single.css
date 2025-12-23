@@ -51,4 +51,48 @@
   padding-right: .8rem;
 }
 
+.Dashboard-module__6WC9ya__mobileNavBar {
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 6vh;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.Dashboard-module__6WC9ya__singleNavItemHolder_mobileView {
+  cursor: pointer;
+}
+
+.Dashboard-module__6WC9ya__mobileNavBar svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .Dashboard-module__6WC9ya__homeContainer__extracontainer {
+    display: none;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer {
+    display: block;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer__leftBar {
+    display: none;
+  }
+
+  .Dashboard-module__6WC9ya__mobileNavBar {
+    display: flex;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer__feedContainer {
+    padding-bottom: 8vh;
+  }
+}
+
 /*# sourceMappingURL=app_Layout_DashboardLayout_Dashboard_module_css_bad6b30c._.single.css.map*/

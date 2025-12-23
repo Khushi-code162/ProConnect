@@ -95,4 +95,35 @@
   padding-right: .8rem;
 }
 
+.Dashboard-module__6WC9ya__mobileNavBar {
+  position: "absolute";
+  background: #fff;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 6vh;
+  display: none;
+  bottom: 0;
+  left: 0;
+}
+
+.Dashboard-module__6WC9ya__mobileNavBar svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .Dashboard-module__6WC9ya__homeContainer__extracontainer {
+    display: none;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer {
+    display: block;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer__leftBar {
+    display: none;
+  }
+}
+
 /*# sourceMappingURL=app_8fe0bfae._.css.map*/

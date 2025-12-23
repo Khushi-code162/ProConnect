@@ -120,7 +120,7 @@ const response =  await clientServer.get(`/user/download_resume?user_id=${userPr
           </div>
 
           <div className={Style.profileContainer__details}>
-            <div style={{ display: "flex", gap: "0.7rem" }}>
+            <div className= {Style.profileContainer__flex}>
               <div style={{ flex: "0.8" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}>
                   <h2>{userProfile?.userId?.name}</h2>
@@ -129,7 +129,7 @@ const response =  await clientServer.get(`/user/download_resume?user_id=${userPr
 
                 <div className="workHistory">
                   <h4>Work History</h4>
-                  <div className={Style.workHistroyContainer}>
+                  <div className={Style.workHistoryContainer}>
                     {userProfile?.pastwork?.map((work, index) => (
                       <div key={index} className={Style.workHistoryCard}>
                         <p style={{ fontWeight: "bold", display: "flex", alignItems: "center", gap: "0.8rem" }}>

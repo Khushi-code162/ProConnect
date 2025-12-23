@@ -92,6 +92,50 @@
   padding-right: .8rem;
 }
 
+.Dashboard-module__6WC9ya__mobileNavBar {
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 6vh;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.Dashboard-module__6WC9ya__singleNavItemHolder_mobileView {
+  cursor: pointer;
+}
+
+.Dashboard-module__6WC9ya__mobileNavBar svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .Dashboard-module__6WC9ya__homeContainer__extracontainer {
+    display: none;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer {
+    display: block;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer__leftBar {
+    display: none;
+  }
+
+  .Dashboard-module__6WC9ya__mobileNavBar {
+    display: flex;
+  }
+
+  .Dashboard-module__6WC9ya__homeContainer__feedContainer {
+    padding-bottom: 8vh;
+  }
+}
+
 /* [project]/app/dashboard/dashboard.module.css [app-client] (css) */
 .dashboard-module__Gx_nyq__scrollComponent {
   flex-direction: column;
@@ -216,6 +260,7 @@
 
 .dashboard-module__Gx_nyq__singleOption__optionsContainer > svg {
   width: 8%;
+  min-width: 1rem;
   height: 100%;
 }
 
@@ -244,7 +289,8 @@
 .dashboard-module__Gx_nyq__allCommentsContainer {
   background: #fff;
   border-radius: 10px;
-  width: 40vw;
+  min-width: 40vh;
+  max-width: 1120px;
   height: 80vh;
   padding: 1.4rem;
   position: relative;
@@ -285,6 +331,12 @@
   width: -moz-fit-content;
   width: fit-content;
   padding: 1.2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard-module__Gx_nyq__allCommentsContainer {
+    width: 90%;
+  }
 }
 
 /*# sourceMappingURL=app_6d5bfab2._.css.map*/

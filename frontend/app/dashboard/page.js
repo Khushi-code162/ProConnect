@@ -28,12 +28,16 @@ function Dashboard() {
 
   const postState = useSelector((state) => state.postReducer);
  
-  useEffect(() => {
-    if (localStorage.getItem("token") === null) {
-      router.push("/login");
-    }
-    setIsTokenThere(true);
-  });
+ useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    router.push("/login");
+  } else {
+    dispatch(setIsTokenThere(true));
+  }
+}, [dispatch, router]);
+
 
   useEffect(() => {
     if (authState.isTokenThere) {
@@ -274,7 +278,7 @@ function Dashboard() {
                     {postState.comments.map((postComment, index) =>{
                      return(
                       <div className ={Style.singleComment} key={commentText._id}>
-                        <div classNAme={Style.singleComment_profileContainer}>
+                        <div className={Style.singleComment_profileContainer}>
                           <img src={
           postComment.userId?.profilePicture 
             ? `${BASE_URL}/${postComment.userId.profilePicture}`

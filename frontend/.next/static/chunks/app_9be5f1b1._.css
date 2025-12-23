@@ -55,6 +55,27 @@ html, body {
   transition: all .2s;
 }
 
+@media screen and (max-width: 600px) {
+  .page-module__E0kJGG__maincontainer {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 1.3rem;
+  }
+
+  .page-module__E0kJGG__mainContainer__left {
+    flex: 1;
+    padding-top: 1.5rem;
+  }
+
+  .page-module__E0kJGG__mainContainer__right {
+    flex: 1;
+  }
+
+  .page-module__E0kJGG__mainContainer__right img {
+    width: 100%;
+  }
+}
+
 /* [project]/app/Components/Navbar/Navbar.module.css [app-client] (css) */
 .Navbar-module__lmnXZq__container {
   padding: 1.2rem;

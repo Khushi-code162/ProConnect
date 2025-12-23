@@ -55,4 +55,25 @@ html, body {
   transition: all .2s;
 }
 
+@media screen and (max-width: 600px) {
+  .page-module__E0kJGG__maincontainer {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 1.3rem;
+  }
+
+  .page-module__E0kJGG__mainContainer__left {
+    flex: 1;
+    padding-top: 1.5rem;
+  }
+
+  .page-module__E0kJGG__mainContainer__right {
+    flex: 1;
+  }
+
+  .page-module__E0kJGG__mainContainer__right img {
+    width: 100%;
+  }
+}
+
 /*# sourceMappingURL=app_page_module_css_bad6b30c._.single.css.map*/

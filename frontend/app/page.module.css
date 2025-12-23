@@ -55,3 +55,25 @@ body {
     padding-block: 0.6rem;
     border-radius: 20px;
 }
+
+@media screen and (max-width : 600px) {
+    .maincontainer {
+        flex-direction :column;
+        gap:2rem;
+        padding-top :1.3rem;
+    }
+
+    .mainContainer__left{
+        flex:1;
+        padding-top: 1.5rem;
+
+    }
+
+    .mainContainer__right{
+        flex:1;
+    }
+
+    .mainContainer__right img{
+        width:100%;
+    }
+}
