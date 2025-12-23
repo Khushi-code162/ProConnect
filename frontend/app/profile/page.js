@@ -30,6 +30,7 @@ const clientServer = axios.create({
   const [inputData, setInputData] = useState({ company: '', position: '', years:''});
 
   const handleWorkInputChange =(e) => {
+    const {name, value } = e.target;
     setInputData({ ...inputData, [name]: value});
   }
 
@@ -132,7 +133,26 @@ const clientServer = axios.create({
                     />
                   </div>
 
-                </div>
+                
+                <div className="workHistory">
+              <h4>workHistory</h4>
+              <div className={Style.workHistoryContainer}>
+                {
+                  userProfile.pastwork.map((work, index) =>{
+                    return(
+                      <div key={index} className={StyleSheet.workHistoryCard}>
+                        <p style={{ fontweight : "bold", display: "flex"}}>{work.company}</p>
+                        <p>{work.years}</p>
+                        </div>
+                    )
+                  })
+                }
+                <button className={Style.addWorkBtn} onClick={() =>{
+                setIsModalOpen(true)
+                }}>Add work</button>
+              </div>
+            </div>
+            </div>
                 {/*recent activity */}
                 <div style ={{flex : "0.2"}}>
                   <h3>Recent Activity</h3>
@@ -162,7 +182,7 @@ const clientServer = axios.create({
               </div>
             </div>
             
-            <div className="workHistory">
+            {/* <div className="workHistory">
               <h4>workHistory</h4>
               <div className={Style.workHistoryContainer}>
                 {
@@ -179,7 +199,7 @@ const clientServer = axios.create({
                 setIsModalOpen(true)
                 }}>Add work</button>
               </div>
-            </div>
+            </div> */}
             {JSON.stringify(userProfile) !== JSON.stringify(authState.user) && 
             <div onClick ={() =>{
               updateProfileData();
@@ -205,10 +225,13 @@ const clientServer = axios.create({
                     }}
                     className={Style.allCommentsContainer}>
 
-                     <input onChange={handleWorkInputChange} name='company' className={Style.inputField} type="text" place="Enter Company" /> 
-                     <input onChange={handleWorkInputChange} name='position' className={Style.inputField} type="text" place="Enter Position" /> 
-                     <input onChange={handleWorkInputChange} name='years' className={Style.inputField} type="number" place="Years" /> 
-                     <div onClick={() =>} className= {Style.updateProfileBtn}>Add work</div>
+                     <input onChange={handleWorkInputChange} name='company' className={Style.inputField} type="text" placeholder="Enter Company" /> 
+                     <input onChange={handleWorkInputChange} name='position' className={Style.inputField} type="text" placeholder="Enter Position" /> 
+                     <input onChange={handleWorkInputChange} name='years' className={Style.inputField} type="number" placeholder="Years" /> 
+                     <div onClick={() =>{
+                      setUserProfile({ ...userProfile, pastwork: [...userProfile.pastwork, inputData] })
+                      setIsModalOpen(false)
+                     }} className= {Style.updateProfileBtn}>Add work</div>
 
 
 
