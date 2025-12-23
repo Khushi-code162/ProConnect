@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import styles from "./Navbar.module.css";
 import { useSelector, useDispatch } from "react-redux";
+import { reset } from "@/config/redux/reducer/authReducer";
 
 export default function NavbarComponent() {
 
@@ -18,7 +19,9 @@ export default function NavbarComponent() {
             }}>Pro Connect</h2> 
             <div style={{display: "flex", gap:"1.2rem"}}>
                 <p>Hey, {authState.user?.userId?.name}</p>
-                <p style={{fontweight: "bold" , cursor: "pointer" }}>Profile</p>
+                <p onClick={() =>{
+                    router.push("/profile")
+                }} style={{fontWeight: "bold" , cursor: "pointer" }}>Profile</p>
                 <p onClick={() =>{
                     localStorage.removeItem("token");
                     router.push("/login")

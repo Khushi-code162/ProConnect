@@ -104,7 +104,7 @@ export const getConnectionsRequest = createAsyncThunk(
       const response = await clientServer.get("/user/getConnectionRequests", {
         params: { token: user.token },
       });
-      return thunkAPI.fulfillWithValue(response.data.connections);
+      return thunkAPI.fulfillWithValue(response.data.connections || []);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to fetch connection requests");
     }

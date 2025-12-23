@@ -33,7 +33,7 @@ const postSlice = createSlice({
         state.isError = false;
         state.postFetched = true;
         console.log(action.payload.posts)
-        state.posts = action.payload.posts.reverse()
+        state.posts = [...action.payload.posts].reverse()
         console.log(`HERE`, state.posts)
         state.message = "Posts fetched successfully!";
       })

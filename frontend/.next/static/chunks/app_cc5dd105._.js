@@ -30,9 +30,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navi
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$Components$2f$Navbar$2f$Navbar$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__ = __turbopack_context__.i("[project]/app/Components/Navbar/Navbar.module.css [app-client] (css module)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-redux/dist/react-redux.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$authReducer$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/config/redux/reducer/authReducer/index.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -60,7 +62,7 @@ function NavbarComponent() {
                     children: "Pro Connect"
                 }, void 0, false, {
                     fileName: "[project]/app/Components/Navbar/page.js",
-                    lineNumber: 16,
+                    lineNumber: 17,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -76,25 +78,28 @@ function NavbarComponent() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/Components/Navbar/page.js",
-                            lineNumber: 20,
+                            lineNumber: 21,
                             columnNumber: 17
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            onClick: ()=>{
+                                router.push("/profile");
+                            },
                             style: {
-                                fontweight: "bold",
+                                fontWeight: "bold",
                                 cursor: "pointer"
                             },
                             children: "Profile"
                         }, void 0, false, {
                             fileName: "[project]/app/Components/Navbar/page.js",
-                            lineNumber: 21,
+                            lineNumber: 22,
                             columnNumber: 17
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             onClick: ()=>{
                                 localStorage.removeItem("token");
                                 router.push("/login");
-                                dispatch(reset());
+                                dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$reducer$2f$authReducer$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["reset"])());
                             },
                             style: {
                                 fontWeight: "bold",
@@ -103,13 +108,13 @@ function NavbarComponent() {
                             children: "Logout"
                         }, void 0, false, {
                             fileName: "[project]/app/Components/Navbar/page.js",
-                            lineNumber: 22,
+                            lineNumber: 25,
                             columnNumber: 17
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/Components/Navbar/page.js",
-                    lineNumber: 19,
+                    lineNumber: 20,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -123,28 +128,28 @@ function NavbarComponent() {
                             children: "Be a part"
                         }, void 0, false, {
                             fileName: "[project]/app/Components/Navbar/page.js",
-                            lineNumber: 35,
+                            lineNumber: 38,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/Components/Navbar/page.js",
-                        lineNumber: 32,
+                        lineNumber: 35,
                         columnNumber: 17
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/Components/Navbar/page.js",
-                    lineNumber: 30,
+                    lineNumber: 33,
                     columnNumber: 13
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/Components/Navbar/page.js",
-            lineNumber: 15,
+            lineNumber: 16,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/Components/Navbar/page.js",
-        lineNumber: 14,
+        lineNumber: 15,
         columnNumber: 9
     }, this);
 }

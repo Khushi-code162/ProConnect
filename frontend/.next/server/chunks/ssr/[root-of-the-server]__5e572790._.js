@@ -203,7 +203,7 @@ const getConnectionsRequest = (0, __TURBOPACK__imported__module__$5b$project$5d2
                 token: user.token
             }
         });
-        return thunkAPI.fulfillWithValue(response.data.connections);
+        return thunkAPI.fulfillWithValue(response.data.connections || []);
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response?.data?.message || "Failed to fetch connection requests");
     }
@@ -476,7 +476,9 @@ const postSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
             state.isError = false;
             state.postFetched = true;
             console.log(action.payload.posts);
-            state.posts = action.payload.posts.reverse();
+            state.posts = [
+                ...action.payload.posts
+            ].reverse();
             console.log(`HERE`, state.posts);
             state.message = "Posts fetched successfully!";
         }).addCase(__TURBOPACK__imported__module__$5b$project$5d2f$config$2f$redux$2f$action$2f$postAction$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAllPosts"].rejected, (state, action)=>{

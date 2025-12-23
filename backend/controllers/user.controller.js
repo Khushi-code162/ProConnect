@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import Profile from "../models/profile.model.js";
+import axios from 'axios';
 
 import bcrypt from "bcrypt";
 import crypto from "crypto";
@@ -7,12 +8,13 @@ import fs from "fs";
 import PDFDocument from "pdfkit";
 import multer from "multer";
 import mongoose from "mongoose";
+import ConnectionRequest from "../models/connections.model.js"
 
 // Convert user profile to PDF
 const convertUserDataTOPDF = async (userData) => {
   const doc = new PDFDocument();
   const outputPath = crypto.randomBytes(16).toString("hex") + ".pdf";
-  const fullPath = "uploads/" + outputPath;
+  const fullPath = "upload/" + outputPath;
 
   const stream = fs.createWriteStream(fullPath);
   doc.pipe(stream);
@@ -20,7 +22,7 @@ const convertUserDataTOPDF = async (userData) => {
   // Add profile picture if available
   if (userData.userId.profilePicture) {
     try {
-      doc.image(`uploads/${userData.userId.profilePicture}`, {
+      doc.image(`upload/${userData.userId.profilePicture}`, {
         align: "center",
         width: 100,
       });
@@ -223,7 +225,10 @@ export const getAllUserProfile = async (req, res) => {
 
 export const downloadProfile = async (req, res) => {
   try {
-    const user_id = req.query.id;
+    const user_id = req.query.user_id;
+
+    if (!user_id) return res.status(400).json({ message: "user_id is required" });
+
     const profile = await Profile.findOne({ userId: user_id }).populate(
       "userId",
       "name username email profilePicture"
@@ -232,11 +237,13 @@ export const downloadProfile = async (req, res) => {
     if (!profile) return res.status(404).json({ message: "Profile not found" });
 
     const pdfFileName = await convertUserDataTOPDF(profile);
-    return res.json({ file: pdfFileName });
+
+    return res.json({ file: `/upload/${pdfFileName}` }); 
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
+
 
 
 export const sendConnectionRequest = async(req,res) =>{
@@ -255,9 +262,9 @@ export const sendConnectionRequest = async(req,res) =>{
             return res.status(404).json({ message: "Connection User not found" })
         }
 
-        const existingRequest = await sendConnectionRequest.findOne(
+        const existingRequest = await ConnectionRequest.findOne(
             {
-                userId: updateUserProfile._id,
+                userId: user._id,
                 connectionId: connectionUser._id
             }
         )
@@ -283,7 +290,7 @@ export const sendConnectionRequest = async(req,res) =>{
 
 //connection layenge kse 
 export const getMyConnectionRequests = async(req,res) =>{
-    const { token } = req.body;
+    const { token } = req.query;
     try{
       const user = await User.findOne({ token });
 
@@ -302,7 +309,7 @@ export const getMyConnectionRequests = async(req,res) =>{
 
 
 export const whatAreMyConnections = async (req, res) =>{
-  const { token }= req.body;
+  const { token }= req.query;
 
   try{
     const user = await User.findOne({ token });
@@ -329,7 +336,7 @@ export const acceptConectionRequest = async(req,res) =>{
       return res.status(404).json({message: "user not found" })
     }
 
-    const connection = await connectionRequest.findOne({ _id: requestId });
+    const connection = await ConnectionRequest.findById({ _id: requestId });
     if(!connection) {
       return res.status(404).json({message :"Connectiom not found" })
     }

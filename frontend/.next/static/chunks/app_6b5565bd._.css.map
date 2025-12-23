@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/my_connections/my_connection.module.css"],"sourcesContent":[""],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///D:/ProConnect/frontend/app/Components/Navbar/Navbar.module.css"],"sourcesContent":[".container {\r\n    padding: 1.2rem;\r\n    top:0;\r\n}\r\n\r\n.navBar{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n}\r\n\r\n.navBaroptionContainer{\r\n    display :flex;\r\n}\r\n.navBar p{\r\n    margin: 0;\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n.buttonJoin {\r\n     width: fit-content;\r\n    cursor: pointer;\r\n    user-select: none;\r\n    transition: all 0.2s;\r\n    margin-top: 0.8rem;\r\n    font-size: 1.4rem;\r\n    background-color: rgb(177, 40, 120);\r\n    color :white;\r\n    padding-inline: 1.2rem;\r\n    padding-block: 0.6rem;\r\n    border-radius: 20px;\r\n}"],"names":[],"mappings":"AAAA;;;;;AAKA;;;;;;AAMA;;;;AAGA;;;;;;AAMA","debugId":null}}]
+}
